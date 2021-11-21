@@ -12,7 +12,7 @@
  :html-hiccup [ :div [:h2 "How it works" ]
 
                "You create an input file, then execute the
-               explainer profram.  It walks through each block of
+               explainer program.  It walks through each block of
                the input file and produces output for each section."
 
                [ :div {:style "background-color: lightgrey" }
