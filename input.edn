@@ -11,9 +11,13 @@
               
  :html-hiccup [ :div [:h2 "How it works" ]
 
-               "You create an input file, then execute the
-               explainer program.  It walks through each block of
-               the input file and produces output for each section."
+               [ :p
+               "You create an input file (input.edn), then execute the
+               'explainer' program.  It walks through each block of
+               the input file and produces output for each section." ]
+
+               [:p "For plantUML sections, the plantUML api is invoked
+               and the diagram is generated."]
 
                [ :div {:style "background-color: lightgrey" }
 
@@ -46,7 +50,7 @@
                 ]
                [ :h2 "Install as local command" ]
                [ :pre
-                "$ ./install.sh \n"
+                "$ ./install.sh # installs to $HOME/bin/explainer \n"
                 "$ mkdir ~/cow && cd ~/cow \n"
                 "$ echo ' [ :html \"&lt;h1>Goose&lt;/h1>\" ] ' > input.edn \n"
                 "$ explainer && google-chrome docs/index.html  "

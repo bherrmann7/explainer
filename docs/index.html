@@ -1,13 +1,14 @@
 <h1>Explainer - a simple program for explaining things</h1><div><h2>Why would you use it</h2>To generate some quick documenation about how something
               works.  There are other more complicated systems out
-              there, <a href="https://asciidoctor.org/">asciidoctor</a> looked cool, but also complicated.</div><div><h2>How it works</h2>You create an input file, then execute the
-               explainer program.  It walks through each block of
-               the input file and produces output for each section.<div style="background-color: lightgrey"><pre>[ 
+              there, <a href="https://asciidoctor.org/">asciidoctor</a> looked cool, but also complicated.</div><div><h2>How it works</h2><p>You create an input file (input.edn), then execute the
+               'explainer' program.  It walks through each block of
+               the input file and produces output for each section.</p><p>For plantUML sections, the plantUML api is invoked
+               and the diagram is generated.</p><div style="background-color: lightgrey"><pre>[ 
       :html "Bla&lt;p>"
       :html-hiccup [:div "hiccup " [:b "bla" ] ]
       :plantuml-file "diagram.pu"
 ]</pre></div>This input generates the following output;<br /><br /></div><div style='background-color: lightgrey; padding:10px'>Bla<p><div>hiccup <b>bla</b></div><img src=diagram.png /><br></div><div><h2>Example usage from inside project</h2><pre>$ git clone https://github.com/bherrmann7/explainer.git 
-$ clj -X:run-x && google-chrome docs/index.html # repeat as needed</pre><h2>Install as local command</h2><pre>$ ./install.sh 
+$ clj -X:run-x && google-chrome docs/index.html # repeat as needed</pre><h2>Install as local command</h2><pre>$ ./install.sh # installs to $HOME/bin/explainer 
 $ mkdir ~/cow && cd ~/cow 
 $ echo ' [ :html "&lt;h1>Goose&lt;/h1>" ] ' > input.edn 
 $ explainer && google-chrome docs/index.html  </pre></div>Cheers!<br>-bob
