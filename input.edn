@@ -12,7 +12,7 @@
  :html-hiccup [ :div [:h2 "How it works" ]
 
                "You create an input file, then execute the
-               generate-html function.  It works through each block of
+               explainer profram.  It walks through each block of
                the input file and produces output for each section."
 
                [ :div {:style "background-color: lightgrey" }
