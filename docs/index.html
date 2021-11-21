@@ -6,5 +6,8 @@
       :html "Bla&lt;p>"
       :html-hiccup [:div "hiccup " [:b "bla" ] ]
       :plantuml-file "diagram.pu"
-]</pre></div>This input generates the following output;<br /><br /></div><div style='background-color: lightgrey; padding:10px'>Bla<p><div>hiccup <b>bla</b></div><img src=diagram.png /><br></div><div><h2>Example usage</h2><pre>$ git clone https://github.com/bherrmann7/explainer.git 
-$ clj -X explainer/run;google-chrome index.html # repeat as needed</pre></div>Cheers!<br>-bob
+]</pre></div>This input generates the following output;<br /><br /></div><div style='background-color: lightgrey; padding:10px'>Bla<p><div>hiccup <b>bla</b></div><img src=diagram.png /><br></div><div><h2>Example usage from inside project</h2><pre>$ git clone https://github.com/bherrmann7/explainer.git 
+$ clj -X:run-x && google-chrome docs/index.html # repeat as needed</pre><h2>Install as local command</h2><pre>$ ./install.sh 
+$ mkdir ~/cow && cd ~/cow 
+$ echo ' [ :html "&lt;h1>Goose&lt;/h1>" ] ' > input.edn 
+$ explainer && google-chrome docs/index.html  </pre></div>Cheers!<br>-bob

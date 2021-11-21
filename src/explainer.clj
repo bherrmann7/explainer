@@ -16,7 +16,7 @@
 
 (defn -main [ & args ]
   (let [document (partition 2 (read-string (slurp "input.edn")))]
-    (.mkdir (java.io.File. "out"))
-    (spit "out/index.html" (clojure.string/join (map render-chunk document))))
-  (println "wrote out/index.html"))
+    (.mkdir (java.io.File. "docs"))
+    (spit "docs/index.html" (clojure.string/join (map render-chunk document))))
+  (println "wrote docs/index.html"))
 

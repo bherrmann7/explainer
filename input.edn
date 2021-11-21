@@ -39,10 +39,17 @@
 
 
  :html-hiccup [:div
-               [ :h2 "Example usage" ]
+               [ :h2 "Example usage from inside project" ]
                [ :pre
                 "$ git clone https://github.com/bherrmann7/explainer.git \n"
-                "$ clj -X explainer/run;google-chrome index.html # repeat as needed"
+                "$ clj -X:run-x && google-chrome docs/index.html # repeat as needed"
+                ]
+               [ :h2 "Install as local command" ]
+               [ :pre
+                "$ ./install.sh \n"
+                "$ mkdir ~/cow && cd ~/cow \n"
+                "$ echo ' [ :html \"&lt;h1>Goose&lt;/h1>\" ] ' > input.edn \n"
+                "$ explainer && google-chrome docs/index.html  "
                 ]
                ]
 
