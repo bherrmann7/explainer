@@ -3,13 +3,13 @@
  :html "<h1>Explainer - a simple program for explaining things</h1>"
 
  :html-hiccup [ :div
-              [:h2 "Why would you use it" ]
+              [:h2 "Why would you use it?" ]
 
               "To generate some quick documenation about how something
               works.  There are other more complicated systems out
               there, " [ :a {:href "https://asciidoctor.org/" } "asciidoctor"] " looked cool, but also complicated."  ]
               
- :html-hiccup [ :div [:h2 "How it works" ]
+ :html-hiccup [ :div [:h2 "How does it work?" ]
 
                [ :p
                "You create an input file (input.edn), then execute the
