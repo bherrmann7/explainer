@@ -6,11 +6,15 @@ architecture of a project, to someone else.
 
 # Approach:
 
-Transform an input edn file into a web page.
+Transform an input edn (input.edn) file into a web page
+(docs/index.html)
 
-The input includes html, hiccup, or referenes to plantuml files.
+The input includes html, hiccup, or references to plantUML files.
+When plantUML files are referenced, the png is generated.
 
 # Usage and Example:
+
+The usage ane example page is created using "explainer",
 
 https://bherrmann7.github.io/explainer/
 
