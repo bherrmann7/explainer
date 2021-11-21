@@ -19,7 +19,7 @@
                [:p "For plantUML sections, the plantUML api is invoked
                and the diagram is generated."]
 
-               [ :div {:style "background-color: lightgrey" }
+               [ :div {:style "background-color: lightgrey; width: 600px; padding: 10px;" }
 
                [:pre
                 "[ 
@@ -35,7 +35,7 @@
                [:br]
                ]
 
- :html "<div style='background-color: lightgrey; padding:10px'>"
+ :html "<div style='background-color: lightgrey; padding:10px; width: 600px;'>"
  :html "<h3>Authentication Example</h3>"
  :html-hiccup [:div "Alice authenticates via Bob." [:br] [:br] ]
  :plantuml-file "diagram.pu"
