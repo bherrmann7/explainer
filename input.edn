@@ -23,8 +23,8 @@
 
                [:pre
                 "[ 
-      :html \"Bla&lt;p>\"
-      :html-hiccup [:div \"hiccup \" [:b \"bla\" ] ]
+      :html \"&lt;h3>Authentication Examplep&lth;/h3>\"
+      :html-hiccup [:div \"Alice authenticates via Bob.\" [:br] [:br] ] ]
       :plantuml-file \"diagram.pu\"
 ]" ]
                 ]
@@ -36,8 +36,8 @@
                ]
 
  :html "<div style='background-color: lightgrey; padding:10px'>"
- :html "Bla<p>"
- :html-hiccup [:div "hiccup " [:b "bla" ] ]
+ :html "<h3>Authentication Example</h3>"
+ :html-hiccup [:div "Alice authenticates via Bob." [:br] [:br] ]
  :plantuml-file "diagram.pu"
  :html "<br></div>"
 
