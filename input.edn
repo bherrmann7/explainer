@@ -1,0 +1,54 @@
+
+[
+ :html "<h1>Explainer - a simple program for explaining things</h1>"
+
+ :html-hiccup [ :div
+              [:h2 "Why would you use it" ]
+
+              "To generate some quick documenation about how something
+              works.  There are other more complicated systems out
+              there, " [ :a {:href "https://asciidoctor.org/" } "asciidoctor"] " looked cool, but also complicated."  ]
+              
+ :html-hiccup [ :div [:h2 "How it works" ]
+
+               "You create an input file, then execute the
+               generate-html function.  It works through each block of
+               the input file and produces output for each section."
+
+               [ :div {:style "background-color: lightgrey" }
+
+               [:pre
+                "[ 
+      :html \"Bla&lt;p>\"
+      :html-hiccup [:div \"hiccup \" [:b \"bla\" ] ]
+      :plantuml-file \"diagram.pu\"
+]" ]
+                ]
+
+
+               "This input generates the following output;"
+               [:br]
+               [:br]
+               ]
+
+ :html "<div style='background-color: lightgrey; padding:10px'>"
+ :html "Bla<p>"
+ :html-hiccup [:div "hiccup " [:b "bla" ] ]
+ :plantuml-file "diagram.pu"
+ :html "<br></div>"
+
+
+ :html-hiccup [:div
+               [ :h2 "Example usage" ]
+               [ :pre
+                "$ git clone https://github.com/bherrmann7/explainer.git \n"
+                "$ clj -X explainer/run;google-chrome index.html # repeat as needed"
+                ]
+               ]
+
+ :html "Cheers!<br>-bob"
+ ]
+
+
+
+

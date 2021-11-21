@@ -1,0 +1,9 @@
+
+{
+ :deps
+ {
+  hiccup/hiccup  {:mvn/version "1.0.5" }
+  net.sourceforge.plantuml/plantuml {:mvn/version "1.2021.14" }
+  }
+ }
+
