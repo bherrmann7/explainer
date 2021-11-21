@@ -1,5 +1,6 @@
 
 (ns explainer
+  (:gen-class)
   (:require [render-html]
             [render-hiccup]
             [clojure.string]
@@ -13,8 +14,9 @@
     :plantuml-file (render-plantuml-file/render data)
     (str "<div>DO NOT KNOW HOW TO RENDER TYPE: " type "</div>")))
 
-(defn run [opt]
+(defn -main [ & args ]
   (let [document (partition 2 (read-string (slurp "input.edn")))]
-    (spit "index.html" (clojure.string/join (map render-chunk document))))
-  (println "wrote index.html"))
+    (.mkdir (java.io.File. "out"))
+    (spit "out/index.html" (clojure.string/join (map render-chunk document))))
+  (println "wrote out/index.html"))
 

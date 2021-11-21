@@ -12,7 +12,7 @@
   (let [input-contents (slurp filename)
         plantuml-reader (SourceStringReader. input-contents)
         png-filename (create-image-filename filename)
-        png-output-stream (java.io.FileOutputStream. png-filename)]
+        png-output-stream (java.io.FileOutputStream. (str "out/" png-filename))]
     (.outputImage plantuml-reader png-output-stream)
     (.close png-output-stream)
     (str "<img src=" png-filename " />")))
