@@ -10,6 +10,10 @@ Transform an input edn file into a web page.
 
 The input includes html, hiccup, or referenes to plantuml files.
 
+# Usage and Example:
+
+https://bherrmann7.github.io/explainer/
+
 # Future directions:
 
 Allow output to be more adapted for slides and giving talks (aka
