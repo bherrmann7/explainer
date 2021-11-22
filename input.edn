@@ -1,15 +1,18 @@
 
 [
+ :html "<link href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3' crossorigin='anonymous'><div style='padding: 30px'>"
+ 
  :html "<h1>Explainer - a simple program for explaining things</h1>"
 
  :html-hiccup [ :div
-              [:h2 "Why would you use it?" ]
+               [:br]
+              [:h3 "Why would you use it?" ]
 
               "To generate some quick documenation about how something
               works.  There are other more complicated systems out
               there, " [ :a {:href "https://asciidoctor.org/" } "asciidoctor"] " looked cool, but also complicated."  ]
               
- :html-hiccup [ :div [:h2 "How does it work?" ]
+ :html-hiccup [ :div [:br] [:h3 "How does it work?" ]
 
                [ :p
                "You create an input file (input.edn), then execute the
@@ -19,23 +22,24 @@
                [:p "For plantUML sections, the plantUML api is invoked
                and the diagram is generated."]
 
-               [ :div {:style "background-color: lightgrey; width: 600px; padding: 10px;" }
+               [:p "In the 'input.edn' file," ]
+               [ :div {:style "background-color: lightgrey; width: 800px; padding: 10px;" }
 
                [:pre
                 "[ 
-      :html \"&lt;h3>Authentication Examplep&lth;/h3>\"
+      :html \"&lt;h3>Authentication Example &lt;/h3>\"
       :html-hiccup [:div \"Alice authenticates via Bob.\" [:br] [:br] ] ]
       :plantuml-file \"diagram.pu\"
 ]" ]
                 ]
 
-
+               [:br]
                "This input generates the following output;"
                [:br]
                [:br]
                ]
 
- :html "<div style='background-color: lightgrey; padding:10px; width: 600px;'>"
+ :html "<div style='background-color: lightgrey; padding:10px; width: 800px;'>"
  :html "<h3>Authentication Example</h3>"
  :html-hiccup [:div "Alice authenticates via Bob." [:br] [:br] ]
  :plantuml-file "diagram.pu"
@@ -43,12 +47,13 @@
 
 
  :html-hiccup [:div
-               [ :h2 "Example usage from inside project" ]
+               [ :br ]
+               [ :h3 "Example usage from inside project" ]
                [ :pre
                 "$ git clone https://github.com/bherrmann7/explainer.git \n"
                 "$ clj -X:run-x && google-chrome docs/index.html # repeat as needed"
                 ]
-               [ :h2 "Install as local command" ]
+               [ :h3 "Install as local command" ]
                [ :pre
                 "$ ./install.sh # installs to $HOME/bin/explainer \n"
                 "$ mkdir ~/cow && cd ~/cow \n"
@@ -57,7 +62,7 @@
                 ]
                ]
 
- :html "Cheers!<br>-bob"
+ :html "Cheers!<br>-bob </div>"
  ]
 
 
