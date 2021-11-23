@@ -3,11 +3,11 @@
               there, <a href="https://asciidoctor.org/">asciidoctor</a> looked cool, but also complicated.</div><div><br /><h3>How does it work?</h3><p>You create an input file (input.edn), then execute the
                'explainer' program.  It walks through each block of
                the input file and produces output for each section.</p><p>For plantUML sections, the plantUML api is invoked
-               and the diagram is generated.</p><p>In the 'input.edn' file,</p><div style="background-color: lightgrey; width: 800px; padding: 10px;"><pre>[ 
+               and the diagram is generated.</p><p>For example, Using this as the 'input.edn' file,</p><div style="background-color: lightgrey; width: 800px; padding: 10px;"><pre>[ 
       :html "&lt;h3>Authentication Example &lt;/h3>"
       :html-hiccup [:div "Alice authenticates via Bob." [:br] [:br] ] ]
       :plantuml-file "diagram.pu"
-]</pre></div><br />This input generates the following output;<br /><br /></div><div style='background-color: lightgrey; padding:10px; width: 800px;'><h3>Authentication Example</h3><div>Alice authenticates via Bob.<br /><br /></div><img src=diagram.png /><br></div><div><br /><h3>Example usage from inside project</h3><pre>$ git clone https://github.com/bherrmann7/explainer.git 
+]</pre></div><br />The following output is generated;<br /><br /></div><div style='background-color: lightgrey; padding:10px; width: 800px;'><h3>Authentication Example</h3><div>Alice authenticates via Bob.<br /><br /></div><img src=diagram.png /><br></div><div><br /><h3>How is it limited?</h3><ul><li>It does not watch the file system and regenerate as inputs are updated.</li><li>It does not auto reload the browsers contents.</li></ul><br /><h3>Example usage from inside project</h3><pre>$ git clone https://github.com/bherrmann7/explainer.git 
 $ clj -X:run-x && google-chrome docs/index.html # repeat as needed</pre><h3>Install as local command</h3><pre>$ ./install.sh # installs to $HOME/bin/explainer 
 $ mkdir ~/cow && cd ~/cow 
 $ echo ' [ :html "&lt;h1>Goose&lt;/h1>" ] ' > input.edn 

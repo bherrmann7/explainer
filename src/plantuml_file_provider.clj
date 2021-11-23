@@ -1,5 +1,6 @@
 
-(ns render-plantuml-file)
+(ns plantuml-file-provider
+  (:require [chunk-provider :refer [ChunkProviderProtocol]]))
 
 (import net.sourceforge.plantuml.SourceStringReader)
 
@@ -8,7 +9,11 @@
   (let [name-length (count plantuml-input-filename)]
     (str (subs plantuml-input-filename 0 (- name-length 3)) ".png")))
 
-(defn render [filename]
+
+;; Does 2 things
+;; - generates the plantuml diagram using the plantuml api
+;; - returns html to display the diagram
+(defn create-plantuml-image [filename]
   (let [input-contents (slurp filename)
         plantuml-reader (SourceStringReader. input-contents)
         png-filename (create-image-filename filename)
@@ -16,5 +21,15 @@
     (.outputImage plantuml-reader png-output-stream)
     (.close png-output-stream)
     (str "<img src=" png-filename " />")))
+
+
+(deftype Provider [data]
+  ChunkProviderProtocol
+  (as-html [_] (create-plantuml-image data))
+  (is-dirty [_] false))
+
+
+
+
 
 

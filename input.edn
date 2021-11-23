@@ -22,7 +22,7 @@
                [:p "For plantUML sections, the plantUML api is invoked
                and the diagram is generated."]
 
-               [:p "In the 'input.edn' file," ]
+               [:p "For example, Using this as the 'input.edn' file," ]
                [ :div {:style "background-color: lightgrey; width: 800px; padding: 10px;" }
 
                [:pre
@@ -34,7 +34,7 @@
                 ]
 
                [:br]
-               "This input generates the following output;"
+               "The following output is generated;"
                [:br]
                [:br]
                ]
@@ -47,6 +47,12 @@
 
 
  :html-hiccup [:div
+               [ :br ]
+               [ :h3 "How is it limited?"]
+               [ :ul
+                [ :li "It does not watch the file system and regenerate as inputs are updated." ]
+                [ :li "It does not auto reload the browsers contents." ]
+                ]
                [ :br ]
                [ :h3 "Example usage from inside project" ]
                [ :pre
