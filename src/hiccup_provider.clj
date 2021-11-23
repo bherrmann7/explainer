@@ -1,8 +1,7 @@
 
 (ns hiccup-provider
   (:require [chunk-provider :refer [ChunkProviderProtocol]]
-            [hiccup.core]
-            ))
+            [hiccup.core]))
 
 (deftype Provider [data]
   ChunkProviderProtocol

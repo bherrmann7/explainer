@@ -10,9 +10,10 @@
 
               "To generate some quick documenation about how something
               works.  There are other more complicated systems out
-              there, " [ :a {:href "https://asciidoctor.org/" } "asciidoctor"] " looked cool, but also complicated."  ]
+              there, " [ :a {:href "https://asciidoctor.org/" } "asciidoctor"] " looked cool, but also complicated." 
               
- :html-hiccup [ :div [:br] [:h3 "How does it work?" ]
+               [:br]
+               [:h3 "How does it work?" ]
 
                [ :p
                "You create an input file (input.edn), then execute the
@@ -23,13 +24,15 @@
                and the diagram is generated."]
 
                [:p "For example, Using this as the 'input.edn' file," ]
-               [ :div {:style "background-color: lightgrey; width: 800px; padding: 10px;" }
+               [ :div {:style "background-color: #fffacd; width: 800px; padding: 10px;" }
 
                [:pre
                 "[ 
       :html \"&lt;h3>Authentication Example &lt;/h3>\"
       :html-hiccup [:div \"Alice authenticates via Bob.\" [:br] [:br] ] ]
-      :plantuml-file \"diagram.pu\"
+      :plantuml-file \"diagram-data/diagram.pu\"
+      :html \"&lt;br>&lt;br>A dot example&lt;br>\"
+      :dot-file \"diagram-data/figure.dot\"
 ]" ]
                 ]
 
@@ -39,10 +42,12 @@
                [:br]
                ]
 
- :html "<div style='background-color: lightgrey; padding:10px; width: 800px;'>"
+ :html "<div style='background-color: #fffacd; padding:10px; width: 800px;'>"
  :html "<h3>Authentication Example</h3>"
  :html-hiccup [:div "Alice authenticates via Bob." [:br] [:br] ]
- :plantuml-file "diagram.pu"
+ :plantuml-file "diagram-data/diagram.pu"
+ :html "<br><br>A dot example<br>"
+ :dot-file "diagram-data/figure.dot"
  :html "<br></div>"
 
 
@@ -55,11 +60,13 @@
                 ]
                [ :br ]
                [ :h3 "Example usage from inside project" ]
+               [ :div "This page is build via explainer - dog fooding."]
                [ :pre
                 "$ git clone https://github.com/bherrmann7/explainer.git \n"
-                "$ clj -X:run-x && google-chrome docs/index.html # repeat as needed"
+                "$ clj -X:run-x && google-chrome docs/index.html"
                 ]
                [ :h3 "Install as local command" ]
+               [ :div "The install script puts 2 files in $HOME/bin.  1) creates a shell executable named 'explainer' 2) the uberjar used by the script." ]
                [ :pre
                 "$ ./install.sh # installs to $HOME/bin/explainer \n"
                 "$ mkdir ~/cow && cd ~/cow \n"

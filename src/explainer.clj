@@ -9,9 +9,7 @@
    [hiccup-provider]
    [plantuml-file-provider]
    [dot-file-provider]
-   [unknown-provider]
-   ))
-
+   [unknown-provider]))
 
 ;; input.edn
 ;; [
@@ -29,26 +27,22 @@
     (unknown-provider/->Provider chunk-type chunk-data)))
 
 ;; 
-(defn is-newer [ first-filename second-filename ]
+(defn is-newer [first-filename second-filename]
   (> (.lastModified first-filename) (.lastModified second-filename)))
 
-(defn load-chunks [ input-filename output-dir ]
+(defn load-chunks [input-filename output-dir]
   (.mkdir (java.io.File. output-dir)) ;; This seeems odly placed
-  (let [ chunks (partition 2 (read-string (slurp input-filename)))]
+  (let [chunks (partition 2 (read-string (slurp input-filename)))]
     chunks))
 
-(defn build-page [input-filename output-dir output-filename ]
-  (let [ providers (map get-chunk-providers (load-chunks input-filename output-dir))]
-    (spit output-filename (str/join (map #(chunk-provider/as-html %1) providers))))
-  )
+(defn build-page [input-filename output-dir output-filename]
+  (let [providers (map get-chunk-providers (load-chunks input-filename output-dir))]
+    (spit output-filename (str/join (map #(chunk-provider/as-html %1) providers)))))
 
-(defn -main [ & _ ]
-  (let [
-        ;; perhaps coommand line parameters ?
+(defn -main [& _]
+  (let [;; perhaps coommand line parameters ?
         input-filename "input.edn"
         output-dir "docs"
-        output-filename (str output-dir "/index.html")
-        ]
+        output-filename (str output-dir "/index.html")]
     (.mkdir (java.io.File. output-dir))
-    (build-page input-filename output-dir output-filename)
-    ))
+    (build-page input-filename output-dir output-filename)))
