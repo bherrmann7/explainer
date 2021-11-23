@@ -13,6 +13,7 @@
               there, " [ :a {:href "https://asciidoctor.org/" } "asciidoctor"] " looked cool, but also complicated." 
               
                [:br]
+               [:br]
                [:h3 "How does it work?" ]
 
                [ :p
