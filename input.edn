@@ -18,10 +18,13 @@
                [ :p
                "You create an input file (input.edn), then execute the
                'explainer' program.  It walks through each block of
-               the input file and produces output for each section." ]
+               the input file and produces output for each section.  See " [:a {:href "https://plantuml.com/"} "https://plantuml.com/"]  ]
 
                [:p "For plantUML sections, the plantUML api is invoked
                and the diagram is generated."]
+
+               [:p "for dot secions, the graphvis dot graph is generated and the image included.  See "
+                [:a { href "https://renenyffenegger.ch/notes/tools/Graphviz/examples/index" } "Graphvis dot examples" ]]
 
                [:p "For example, Using this as the 'input.edn' file," ]
                [ :div {:style "background-color: #fffacd; width: 800px; padding: 10px;" }

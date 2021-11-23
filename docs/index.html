@@ -2,8 +2,8 @@
               works.  There are other more complicated systems out
               there, <a href="https://asciidoctor.org/">asciidoctor</a> looked cool, but also complicated.<br /><h3>How does it work?</h3><p>You create an input file (input.edn), then execute the
                'explainer' program.  It walks through each block of
-               the input file and produces output for each section.</p><p>For plantUML sections, the plantUML api is invoked
-               and the diagram is generated.</p><p>For example, Using this as the 'input.edn' file,</p><div style="background-color: #fffacd; width: 800px; padding: 10px;"><pre>[ 
+               the input file and produces output for each section.  See <a href="https://plantuml.com/">https://plantuml.com/</a></p><p>For plantUML sections, the plantUML api is invoked
+               and the diagram is generated.</p><p>for dot secions, the graphvis dot graph is generated and the image included.  See <a href="https://renenyffenegger.ch/notes/tools/Graphviz/examples/index">Graphvis dot examples</a></p><p>For example, Using this as the 'input.edn' file,</p><div style="background-color: #fffacd; width: 800px; padding: 10px;"><pre>[ 
       :html "&lt;h3>Authentication Example &lt;/h3>"
       :html-hiccup [:div "Alice authenticates via Bob." [:br] [:br] ] ]
       :plantuml-file "diagram-data/diagram.pu"
