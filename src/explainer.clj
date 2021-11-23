@@ -8,6 +8,7 @@
    [html-provider]
    [hiccup-provider]
    [plantuml-file-provider]
+   [dot-file-provider]
    [unknown-provider]
    ))
 
@@ -24,6 +25,7 @@
     :html (html-provider/->Provider chunk-data)
     :html-hiccup (hiccup-provider/->Provider chunk-data)
     :plantuml-file (plantuml-file-provider/->Provider chunk-data)
+    :dot-file (dot-file-provider/->Provider chunk-data)
     (unknown-provider/->Provider chunk-type chunk-data)))
 
 ;; 
