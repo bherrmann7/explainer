@@ -4,6 +4,6 @@
 
 (defn jar [opts]
   (-> opts
-      (assoc :main 'explainer :lib 'net.clojars.top/explainer )
+      (assoc :main 'explainer :lib 'net.clojars.top/explainer)
       (bb/clean)
       (bb/uber)))

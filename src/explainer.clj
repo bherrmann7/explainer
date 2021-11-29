@@ -4,6 +4,10 @@
   (:require
    [clojure.string :as str]
 
+   [cli]
+   [utils]
+   [providers]
+   [watch]
    [chunk-provider]
    [html-provider]
    [hiccup-provider]
@@ -18,31 +22,42 @@
 ;;    ...
 ;; ]
 
-(defn get-chunk-providers [[chunk-type chunk-data]]
-  (case chunk-type
-    :html (html-provider/->Provider chunk-data)
-    :html-hiccup (hiccup-provider/->Provider chunk-data)
-    :plantuml-file (plantuml-file-provider/->Provider chunk-data)
-    :dot-file (dot-file-provider/->Provider chunk-data)
-    (unknown-provider/->Provider chunk-type chunk-data)))
-
-;; 
-(defn is-newer [first-filename second-filename]
-  (> (.lastModified first-filename) (.lastModified second-filename)))
-
-(defn load-chunks [input-filename output-dir]
-  (.mkdir (java.io.File. output-dir)) ;; This seeems odly placed
-  (let [chunks (partition 2 (read-string (slurp input-filename)))]
-    chunks))
-
-(defn build-page [input-filename output-dir output-filename]
-  (let [providers (map get-chunk-providers (load-chunks input-filename output-dir))]
-    (spit output-filename (str/join (map #(chunk-provider/as-html %1) providers)))))
-
-(defn -main [& _]
+(defn -main [& args]
   (let [;; perhaps coommand line parameters ?
-        input-filename "input.edn"
-        output-dir "docs"
-        output-filename (str output-dir "/index.html")]
-    (.mkdir (java.io.File. output-dir))
-    (build-page input-filename output-dir output-filename)))
+        pargs (cli/parse-cli args)
+        verbose (get pargs "--verbose")
+        debug (get pargs "--debug")
+        say (fn [& args] (if verbose (apply println args) nil))
+        say-debug (fn [& args] (if debug (apply println args) nil))
+        _ (say "parsed args:" pargs)
+        context-raw {:say say
+                     :say-debug say-debug
+                     :verbose (get pargs "--verbose")
+                     :watch-flag  (get pargs "--watch")
+                     :output-dir (get pargs "--output-dir")
+                     :output-filename "index.html"
+                     :input-dir  (get pargs "--input-dir")
+                     :input-filename "doc.edn"}
+        {:keys [watch-flag output-dir input-dir input-filename output-filename]} context-raw
+        context (assoc context-raw
+                       :input-edn-file  (str input-dir "/" input-filename)
+                       :output-web-page (str output-dir "/" output-filename))]
+
+;; ensure the output dir exists.
+    (.mkdir (java.io.File. (:output-dir context)))
+
+    (let [providers (providers/build-providers context)]
+      (say "Page has" (count providers) "chunks")
+      (doseq [provider providers]
+        (say "   " (chunk-provider/is-dirty provider) " " (chunk-provider/summary provider)))
+
+      (if (providers/is-edn-dirty context)
+        (providers/write-page context providers) nil)
+
+      (doseq [p providers]
+        (if (chunk-provider/is-dirty p)
+          (chunk-provider/as-html p) ;; forces rebuild currently.
+          nil))
+
+      (if watch-flag (watch/watcher context providers) nil))))
+

@@ -5,6 +5,7 @@
   org.clojure/clojure {:mvn/version "1.10.3"}
   hiccup/hiccup  {:mvn/version "1.0.5" }
   net.sourceforge.plantuml/plantuml {:mvn/version "1.2021.14" }
+  com.offbytwo/docopt {:mvn/version "0.6.0.20150202"}
   }
 
  :aliases

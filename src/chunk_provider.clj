@@ -12,5 +12,8 @@
   needed.")
 
   (is-dirty [this] "Did the underlying data (typically file)
-  change. Can be called repeadtyly (ie like ever 250ms) to see if we
-  need to regenerate the page."))
+  change. Can be called repeatly (ie like ever 250ms) to see if we
+  need to regenerate the page.")
+
+  (summary [this] "Provider name and/or data summary"))
+

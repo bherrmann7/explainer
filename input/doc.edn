@@ -34,9 +34,9 @@
                 "[ 
       :html \"&lt;h3>Authentication Example &lt;/h3>\"
       :html-hiccup [:div \"Alice authenticates via Bob.\" [:br] [:br] ] ]
-      :plantuml-file \"diagram-data/diagram.pu\"
+      :plantuml-file \"diagram.pu\"
       :html \"&lt;br>&lt;br>A dot example&lt;br>\"
-      :dot-file \"diagram-data/figure.dot\"
+      :dot-file \"figure.dot\"
 ]" ]
                 ]
 
@@ -49,9 +49,9 @@
  :html "<div style='background-color: #fffacd; padding:10px; width: 800px;'>"
  :html "<h3>Authentication Example</h3>"
  :html-hiccup [:div "Alice authenticates via Bob." [:br] [:br] ]
- :plantuml-file "diagram-data/diagram.pu"
+ :plantuml-file "diagram.pu"
  :html "<br><br>A dot example<br>"
- :dot-file "diagram-data/figure.dot"
+ :dot-file "figure.dot"
  :html "<br></div>"
 
 

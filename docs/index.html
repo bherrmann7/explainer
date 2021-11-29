@@ -6,9 +6,9 @@
                and the diagram is generated.</p><p>for dot secions, the graphvis dot graph is generated and the image included.  See <a href="https://renenyffenegger.ch/notes/tools/Graphviz/examples/index">Graphvis dot examples</a></p><p>For example, Using this as the 'input.edn' file,</p><div style="background-color: #fffacd; width: 800px; padding: 10px;"><pre>[ 
       :html "&lt;h3>Authentication Example &lt;/h3>"
       :html-hiccup [:div "Alice authenticates via Bob." [:br] [:br] ] ]
-      :plantuml-file "diagram-data/diagram.pu"
+      :plantuml-file "diagram.pu"
       :html "&lt;br>&lt;br>A dot example&lt;br>"
-      :dot-file "diagram-data/figure.dot"
+      :dot-file "figure.dot"
 ]</pre></div><br />The following output is generated;<br /><br /></div><div style='background-color: #fffacd; padding:10px; width: 800px;'><h3>Authentication Example</h3><div>Alice authenticates via Bob.<br /><br /></div><img src=diagram.png /><br><br>A dot example<br><img src=figure.png /><br></div><div><br /><h3>How is it limited?</h3><ul><li>It does not watch the file system and regenerate as inputs are updated.</li><li>It does not auto reload the browsers contents.</li></ul><br /><h3>Example usage from inside project</h3><div>This page is build via explainer - dog fooding.</div><pre>$ git clone https://github.com/bherrmann7/explainer.git 
 $ clj -X:run-x && google-chrome docs/index.html</pre><h3>Install as local command</h3><div>The install script puts 2 files in $HOME/bin.  1) creates a shell executable named 'explainer' 2) the uberjar used by the script.</div><pre>$ ./install.sh # installs to $HOME/bin/explainer 
 $ mkdir ~/cow && cd ~/cow 
