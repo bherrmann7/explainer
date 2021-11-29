@@ -9,8 +9,8 @@ architecture of a project, to someone else.
 Transform an input edn (input.edn) file into a web page
 (docs/index.html)
 
-The input includes html, hiccup, or references to plantUML files.
-When plantUML files are referenced, the png is generated.
+The input includes html, hiccup, or references to plantUML or dot files.
+When plantUML or dot files are referenced, a png is generated.
 
 # Usage and Example:
 
