@@ -1,22 +1,17 @@
 
-{
- :deps
- {
-  org.clojure/clojure {:mvn/version "1.10.3"}
-  hiccup/hiccup  {:mvn/version "1.0.5" }
-  net.sourceforge.plantuml/plantuml {:mvn/version "1.2021.14" }
+{:deps
+ {org.clojure/clojure {:mvn/version "1.10.3"}
+  hiccup/hiccup  {:mvn/version "1.0.5"}
+  net.sourceforge.plantuml/plantuml {:mvn/version "1.2021.14"}
   com.offbytwo/docopt {:mvn/version "0.6.0.20150202"}
-  }
+  ring/ring-core {:mvn/version "1.8.2"}
+  ring/ring-jetty-adapter {:mvn/version "1.8.2"}}
 
  :aliases
- {
-  :run-x {:ns-default explainer
-          :exec-fn -main
-          }
+ {:xj {:exec-fn explainer/-main}
+  :w      {:ns-default explainer
+           :exec-fn -main}
   :build {:deps {io.github.seancorfield/build-clj
                  {:git/tag "v0.5.4" :git/sha "bc9c0cc"}}
-          :ns-default build}
-  }
-
- }
+          :ns-default build}}}
 

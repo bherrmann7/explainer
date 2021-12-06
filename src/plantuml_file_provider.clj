@@ -9,14 +9,12 @@
 ;; - generates the plantuml diagram using the plantuml api
 ;; - returns html to display the diagram
 (defn create-plantuml-image [context filename]
-  (println "------- ON OUR WAY")
   (let [{:keys [input-dir output-dir]} context
         input-contents (slurp (str input-dir "/" filename))
         plantuml-reader (SourceStringReader. input-contents)
         png-filename (utils/create-image-filename filename ".pu")
         png-output-stream (java.io.FileOutputStream. (str output-dir "/" png-filename))
         dd (.outputImage plantuml-reader png-output-stream)]
-    (println "------- DD is " (bean dd))
     (.close png-output-stream)
     (str "<img src=" png-filename " />")))
 

@@ -10,6 +10,7 @@
    [watch]
    [chunk-provider]
    [html-provider]
+   [js-file-provider]
    [hiccup-provider]
    [plantuml-file-provider]
    [dot-file-provider]
@@ -23,8 +24,8 @@
 ;; ]
 
 (defn -main [& args]
-  (let [;; perhaps coommand line parameters ?
-        pargs (cli/parse-cli args)
+  (println "args" args)
+  (let [pargs (cli/parse-cli args)
         verbose (get pargs "--verbose")
         debug (get pargs "--debug")
         say (fn [& args] (if verbose (apply println args) nil))
@@ -61,3 +62,4 @@
 
       (if watch-flag (watch/watcher context providers) nil))))
 
+(-main "-w")
