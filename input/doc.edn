@@ -1,82 +1,96 @@
 
 [
+
  :html "<link href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3' crossorigin='anonymous'><div style='padding: 30px'>"
 
  ;; This reloads on every change
  :js-file "reloader.js"
- 
+
  :html "<h1>Explainer - a simple program for explaining things</h1>"
 
- :html-hiccup [ :div
+ :html-hiccup [:div
                [:br]
-              [:h3 "Why would you use it?" ]
+               [:h3 "Why would you use it?"]
 
-              "To generate some quick documenation about how something
+               "To generate some quick documenation about how something
               works.  There are other more complicated systems out
-              there, " [ :a {:href "https://asciidoctor.org/" } "asciidoctor"] " looked cool, but also complicated." 
-              
-               [:br]
-               [:br]
-               [:h3 "How does it work?" ]
+              there, " [:a {:href "https://asciidoctor.org/"} "asciidoctor"] " looked cool, but also complicated."
 
-               [ :p
-               "You create an input file (ie doc.edn), then execute the
+               [:br]
+               [:br]
+               [:h3 "How does it work?"]
+
+               [:p
+                "You create an input file (ie doc.edn), then execute the
                'explainer' program.  It walks through each block of
-               the input file and produces output for each section.  See " [:a {:href "https://plantuml.com/"} "https://plantuml.com/"]  ]
+               the input file and produces output for each section.  See " [:a {:href "https://plantuml.com/"} "https://plantuml.com/"]]
 
                [:p "For plantUML sections, the plantUML api is invoked
                and the diagram is generated."]
 
                [:p "for dot secions, the graphvis dot graph is generated and the image included.  See "
-                [:a { href "https://renenyffenegger.ch/notes/tools/Graphviz/examples/index" } "Graphvis dot examples" ]]
+                [:a {href "https://renenyffenegger.ch/notes/tools/Graphviz/examples/index"} "Graphvis dot examples"]]
 
-               [:p "For example, Using this as the 'input.edn' file," ]
-               [ :div {:style "background-color: #fffacd; width: 800px; padding: 10px;" }
+               [:p "For example, Using this as the 'input.edn' file,"]
+               [:div {:style "background-color: #fffacd; width: 800px; padding: 10px;"}
 
-               [:pre
-                "[ 
+                [:pre
+                 "[ 
+      :js-file \"myjavascript.js\"  ;; inserts the javascript into the document
       :html \"&lt;h3>Authentication Example &lt;/h3>\"
       :html-hiccup [:div \"Alice authenticates via Bob.\" [:br] [:br] ] ]
       :plantuml-file \"diagram.pu\"
       :html \"&lt;br>&lt;br>A dot example&lt;br>\"
       :dot-file \"figure.dot\"
-]" ]
-                ]
+]"]]
 
                [:br]
                "The following output is generated;"
                [:br]
-               [:br]
-               ]
-
+               [:br]]
  :html "<div style='background-color: #fffacd; padding:10px; width: 800px;'>"
  :html "<h3>Authentication Example</h3>"
- :html-hiccup [:div "Alice authenticates via Bob." [:br] [:br] ]
+ :html-hiccup [:div "Alice authenticates via Bob." [:br] [:br]]
  :plantuml-file "diagram.pu"
  :html "<br><br>A dot example<br>"
  :dot-file "figure.dot"
  :html "<br></div>"
 
-
  :html-hiccup [:div
-               [ :br ]
-               [ :h3 "Install as local command" ]
-               [ :div "The install script puts two files in $HOME/bin.  <ol>"
-                "<li>A shell executable named 'explainer'"
-                "<li>A uberjar used by the script.</ol>" ]
                [:br]
-               [:h3 "Quick Example" ]
-               [ :pre
+               [:h3 "Install as local command"]
+               [:div "The install script puts two files in $HOME/bin.  <ol>"
+                "<li>A shell executable named 'explainer'"
+                "<li>A uberjar used by the script.</ol>"]
+               [:br]
+               [:h3 "Quick Example"]
+               [:pre
                 "$ ./install.sh # installs to $HOME/bin/explainer \n"
                 "$ mkdir -p ~/cow/input && cd ~/cow \n"
                 "$ echo ' [ :html \"&lt;h1>Goose&lt;/h1>\" ] ' > input/doc.edn \n"
-                "$ explainer && google-chrome docs/index.html  "
-                ]
-               ]
+                "$ explainer && google-chrome docs/index.html  "]]
 
- :html "Cheers!<br>-bob </div>"
+ :html-hiccup [:div
+               [:br]
+               [:h3 "Command Line Usage"]
+               [:pre "Explainer\n"
+                "\n"
+                "Usage:\n"
+                "  explainer [options] \n"
+                "  explainer --help\n"
+                "  explainer --version\n"
+                "\n"
+                "Options:\n"
+                "  -o <output-dir>, --output-dir <output-dir>  Where to write the output files. [default: docs]\n"
+                "  -i <input-dir>, --input-dir <input-dir>     Where to write the input files. [default: input]\n"
+                "  -w --watch    Wait and watch for input file changes, and reflect them to the output file.\n"
+                "  -v --verbose  Verbose output.\n"
+                "  -d --debug    Debug output.\n"
+                "  -h --help     Show this screen.\n"
+                "  --version     Show version.\n"
+                "\n"]]
+
+     :html "Cheers!<br>-bob</div>"
+
  ]
-
-
-
 

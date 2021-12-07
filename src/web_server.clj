@@ -10,13 +10,12 @@
    :body body})
 
 (defn mimetype-for-file [filename]
-  (let [ last-dot (.lastIndexOf filename ".")
-        extension (subs filename last-dot) ]
-  (case extension
-    ".js" "text/javascript"
-    ".html" "text/html"
-    "image/jpeg"
-    )))
+  (let [last-dot (.lastIndexOf filename ".")
+        extension (subs filename last-dot)]
+    (case extension
+      ".js" "text/javascript"
+      ".html" "text/html"
+      "image/jpeg")))
 
 (defn handler [serve-from-dir version request]
   (let [uri-raw (:uri request)]

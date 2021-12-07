@@ -12,7 +12,7 @@
   (def providers providers-orig)
 
   (web-server/start (:output-dir context) version)
- 
+
   (while true
     (Thread/sleep 1000)
     (.print System/out  ".")
@@ -21,17 +21,22 @@
     ;; did input.edn change? => rebuild providers and index.html
     (if (providers/is-edn-dirty context)
       (do
-        (def providers (providers/build-providers context))
-        (providers/write-page context providers)
+        (try
+          (def providers (providers/build-providers context))
+          (providers/write-page context providers)
+          (println "\nUpdated all")
+          (catch Throwable thr (let [{:keys [output-web-page]} context]
+                                 (println "\nError... " str)
+                                 (spit output-web-page (str thr)))))
         (swap! version inc)
-        (println "\nUpdated all"))
-      (let [dirty  (filter chunk-provider/is-dirty providers)]
-        (doseq [dp dirty]
-          (println " says dirty " (chunk-provider/summary dp)))
-        (if (not (empty? dirty))
-          (do
-            (println "\nUpdated some data files. -- rebuilding entire document.")
-            (providers/write-page context providers) ;; wack it all.
-            (swap! version inc)))))))
+        (let [dirty  (filter chunk-provider/is-dirty providers)]
+          (doseq [dp dirty]
+            (println " says dirty " (chunk-provider/summary dp)))
+          (if (seq dirty)
+            (do
+              (println "\nUpdated some data files. -- rebuilding entire document.")
+              (providers/write-page context providers) ;; wack it all.
+              (swap! version inc)) nil))) nil)))
+
 
 

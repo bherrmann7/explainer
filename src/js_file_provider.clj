@@ -6,9 +6,8 @@
 (defn create-js-file [context filename]
   (let [{:keys [input-dir output-dir]} context
         input-contents (slurp (str input-dir "/" filename))
-        output-path (str output-dir "/" filename)
-        ]
-        (spit output-path input-contents)
+        output-path (str output-dir "/" filename)]
+    (spit output-path input-contents)
     (str "<script src='" filename "' ></script>")))
 
 (defn is-dirty
