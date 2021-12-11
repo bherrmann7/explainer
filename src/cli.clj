@@ -1,5 +1,4 @@
 
-
 (ns cli)
 
 (import org.docopt.Docopt)
@@ -22,16 +21,7 @@
             "  --version     Show version.\n"
             "\n"))
 
-;;(def args [])
-;;(def args ["--out" "docs"])
-
-;;(defn handle-exception [docoptExitException]
-;;  (println "Dee code" (.getExitCode docoptExitException))
-;;  (println "Dee msg" (.getMessage docoptExitException)))
-
 (defn parse-cli [args]
-;;  (.parse (.withExit (Docopt. usage) false) args)
   (into {} (.parse (.withVersion (Docopt. usage) "alpha") (into [] args))))
-;;  (catch org.docopt.DocoptExitException dee (handle-dee dee))))
-;;  (println "Gots" xx))
+
 

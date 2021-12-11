@@ -4,6 +4,8 @@
             [web-server]
             [chunk-provider]))
 
+(use '[clojure.java.shell :only [sh]])
+
 (def version (atom 0))
 
 (defn watcher [context providers-orig]
@@ -12,6 +14,8 @@
   (def providers providers-orig)
 
   (web-server/start (:output-dir context) version)
+
+  (sh "xdg-open" "http://localhost:3000/index.html")
 
   (while true
     (Thread/sleep 1000)

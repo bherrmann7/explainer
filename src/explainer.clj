@@ -60,4 +60,3 @@
 
       (if watch-flag (watch/watcher context providers) nil))))
 
-(-main "-w")

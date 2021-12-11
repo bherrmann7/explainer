@@ -1,1 +1,1 @@
-clj -M -m explainer
+clj -M -m explainer $*

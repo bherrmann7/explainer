@@ -13,7 +13,9 @@
   (let [last-dot (.lastIndexOf filename ".")
         extension (subs filename last-dot)]
     (case extension
+      ".css" "text/css"
       ".js" "text/javascript"
+      ".yml" "text/x-yaml"
       ".html" "text/html"
       "image/jpeg")))
 
