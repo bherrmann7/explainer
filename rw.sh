@@ -1,1 +1,1 @@
-clj -M -m explainer -w
+clojure -M -m explainer -w
