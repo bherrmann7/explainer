@@ -9,8 +9,12 @@
 (def version (atom 0))
 
 (defn watcher [context providers-orig]
+  (let [
+        {:keys [output-web-page input-dir]} context
+        reloader-text (slurp (str input-dir "/reloader.js"))]
   (println "Watching for changes...")
 
+  ;; use an atom      
   (def providers providers-orig)
 
   (web-server/start (:output-dir context) version)
@@ -29,9 +33,9 @@
           (def providers (providers/build-providers context))
           (providers/write-page context providers)
           (println "\nUpdated all")
-          (catch Throwable thr (let [{:keys [output-web-page]} context]
+          (catch Throwable thr (do
                                  (println "\nError... " str)
-                                 (spit output-web-page (str thr)))))
+                                 (spit output-web-page (str "<script>"reloader-text "</script>" thr)))))
         (swap! version inc)
         (let [dirty  (filter chunk-provider/is-dirty providers)]
           (doseq [dp dirty]
@@ -40,7 +44,7 @@
             (do
               (println "\nUpdated some data files. -- rebuilding entire document.")
               (providers/write-page context providers) ;; wack it all.
-              (swap! version inc)) nil))) nil)))
+              (swap! version inc)) nil))) nil))))
 
 
 

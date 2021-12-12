@@ -5,3 +5,4 @@ out
 target
 .nrepl-port
 pub
+.\#*
