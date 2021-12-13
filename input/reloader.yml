@@ -1,0 +1,17 @@
+swagger: '2.0'
+info:
+  version: ''
+  title: ''
+paths:
+  /version:
+    get:
+      tags:
+        - 'Document change endpoint'
+      description: get current document version
+      responses:
+        '200':
+           description: version of document, gets bumped everytime there is an edit.
+           schema:
+             type:
+               integer
+             description: starts at zero when explainer starts up
