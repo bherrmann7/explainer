@@ -6,3 +6,4 @@ target
 .nrepl-port
 pub
 .\#*
+install2.sh
