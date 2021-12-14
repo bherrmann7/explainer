@@ -3,7 +3,7 @@
               there, <a href="https://asciidoctor.org/">asciidoctor</a> looked cool, but also complicated.<br /><br /><h3>How does it work?</h3><p>You create an input file (ie doc.edn), then execute the
                'explainer' program.  It walks through each block of
                the input file and produces output for each section. </p><p>For plantUML sections, the plantUML api is invoked
-               and the diagram is generated.   See <a href="https://plantuml.com/">https://plantuml.com/</a></p><p>for dot secions, the graphvis dot graph is generated and the image included.  See <a href="https://renenyffenegger.ch/notes/tools/Graphviz/examples/index">Graphvis dot examples</a></p><p>For example, Using this as the 'doc.edn' file,</p><div style="background-color: #fffacd; width: 800px; padding: 10px;"><pre>[ 
+               and the diagram is generated.   See <a href="https://plantuml.com/">https://plantuml.com/</a></p><p>for dot sections, the graphvis dot graph is generated and the image included.  See <a href="https://renenyffenegger.ch/notes/tools/Graphviz/examples/index">Graphvis dot examples</a></p><p>For example, Using this as the 'doc.edn' file,</p><div style="background-color: #fffacd; width: 800px; padding: 10px;"><pre>[ 
       :js-file "myjavascript.js"  ;; inserts the javascript into the document
       :html "&lt;h3>Authentication Example &lt;/h3>"
       :html-hiccup [:div "Alice authenticates via Bob." [:br] [:br] ] ]
@@ -13,26 +13,27 @@
 ]</pre></div><br />The following output is generated;<br /><br /></div><div style='background-color: #fffacd; padding:10px; width: 800px;'><h3>Authentication Example</h3><div>Alice authenticates via Bob.<br /><br /></div><img src=diagram.png /><br><br>A dot example<br><img src=figure.png /><br></div><div><br /><h3>Install as local command</h3><div>The install script puts two files in $HOME/bin.  <ol><li>A shell executable named 'explainer'<li>A uberjar used by the script.</ol></div><br /><h3>Quick Example</h3><pre>$ ./install.sh # installs to $HOME/bin/explainer 
 $ mkdir -p ~/cow/input && cd ~/cow 
 $ echo ' [ :html "&lt;h1>Goose&lt;/h1>" ] ' > input/doc.edn 
-$ explainer && google-chrome docs/index.html  </pre><br /><h3>Running explainer in "Watch mode"</h3><p>The normal way to write an explainer document is
-               to have a browser along side of an editor (I use emacs)
-               with explainer running in watch mode.  Evertime you
-               save in the editor, explainer updaes the
-               document. <pre>$ explainer -w</pre></p><img src="typicalworkflow.png" width="600" /><br /><br /><p>When running in watch mode, explainer checks for
+$ explainer && google-chrome docs/index.html  </pre><br /><h3>Running explainer in "Watch mode"</h3><p>When developing a document, using watch mode can
+               be helpful.  Typically means having
+               browser (ie. chrome) along side of an
+               editor (ie. emacs) with explainer running in watch
+               mode.  Evertime you save in the editor, explainer
+               updates the document. <pre>$ explainer -w</pre></p><img src="typicalworkflow.png" width="600" /><br /><br /><p>When running in watch mode, explainer checks for
                changes three times a second.  When a timestamp on an
                input file changes, explainer regenerates the output. </p><p>The output page has a small bit of javascript in
                it, which checks to see if the document version has
                changed.  If the version has changed, the page is
-               reloaded.   The endpoint for checking the version is;</p></div><link rel='stylesheet' type='text/css' href='swagger-ui.css' />
-  <style>
+               reloaded.   The endpoint for checking the version is;</p></div>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.2/swagger-ui.css' integrity='sha512-sFCybMLlCEgtHSq/iUUG/HL4PKfg5l/qlA2scyRpDWTZU8hWOomj/CrOTxpi9+w8rODDy+crxi2VxhLZ+gehWg==' crossorigin='anonymous' referrerpolicy='no-referrer' />
+<script src='https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.2/swagger-ui-bundle.js' integrity='sha512-qoOARXHXcSln7mnJQDGGnPYheEGFOPjlO+cV3KaHlLnTcJJZCZTqyPv7fMX269MuWe3nwQWEilTuuUGjDB4wSA==' crossorigin='anonymous' referrerpolicy='no-referrer'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.2/swagger-ui-standalone-preset.js' integrity='sha512-Gk8awVM/iz6LZyVlo/5stCZnZvawpFWhrOHDYy5pLkQoCYrVw26PO9WBuVCObRdcUSlddvYmzHv/lHrrgn1N4Q==' crossorigin='anonymous' referrerpolicy='no-referrer'></script><style>
       /* suppress the yml link */
       .swagger-ui .info hgroup.main a {
         display: none
       }
     </style>
-  <script src='swagger-ui-bundle.js' charset='UTF-8'> </script>
-  <script src='swagger-ui-standalone-preset.js' charset='UTF-8'> </script>
-  <script>
-    window.onload = function() {
+   <script>
+     window.addEventListener('load', (event) => {
       // Begin Swagger UI call region
       const ui = SwaggerUIBundle({
           url: 'reloader.yml',
@@ -40,8 +41,8 @@ $ explainer && google-chrome docs/index.html  </pre><br /><h3>Running explainer 
         deepLinking: true,
         presets: [
           SwaggerUIBundle.presets.apis,
-          // slice(1) gets rid of banner
-          SwaggerUIStandalonePreset.slice(1)
+          // using .slice(1) gets rid of banner
+          SwaggerUIStandalonePreset.slice(1) 
         ],
         plugins: [
           SwaggerUIBundle.plugins.DownloadUrl
@@ -50,8 +51,9 @@ $ explainer && google-chrome docs/index.html  </pre><br /><h3>Running explainer 
       });
       // End Swagger UI call region
 
-      window.ui = ui; 
-    };
+      // I'm not entirely sure if this is needed
+      window.ui_reloader = ui;
+    });
   </script>
   <div id='reloader-swagger-ui'></div>
 <div><br /><br /><h3>Command Line Usage</h3><pre>Explainer
@@ -70,7 +72,6 @@ Options:
   -h --help     Show this screen.
   --version     Show version.
 
-</pre><h3>TODO</h3><ul><li>handle image resources (aka you add a picture to
-                the input dir -  like <code>:resource "picture.png" </code>This ensures the input gets copied to the output directory </li><li>swagger resources should be handled more
+</pre><h3>TODO</h3><ul><li>make reloader an automatic chunk if in watch mode</li><li>swagger resources should be handled more
                 automatically (ie. if you mention swagger, then they
                 get added on demand)</li><li>consider something like a resource pack (ie for swagger, or watch mode)</li><li>consider aliases, for example <code>:bootstrap 3</code> adds a boostrap thing from ~/.explainer-aliases</li><li>doing -w should automatically add the provider <code>:javascript "_reloader.js"</code></li></ul><h3>Perhaps / Maybe / Ideas</h3><ul><li>consider renaming the 'docs' directory to 'public_html' or 'www' or make the current dir the one with a *.edn file in it</li><li>add markdown</li><li>add understanding of other pages (multiple input pages, instead of a single page)</li><li>Better error handling - indicate where the issue is (right now there is a blanket something went wrong)</li><li>consider using jtidy to clean up output</li><li>consider indenting the doc.edn doc</li></ul></div>Enjoy!<br>-bob</div>

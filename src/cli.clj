@@ -17,6 +17,7 @@
             "  -w --watch    Wait and watch for input file changes, and reflect them to the output file.\n"
             "  -v --verbose  Verbose output.\n"
             "  -d --debug    Debug output.\n"
+            "  -r --repl     When used from repl use this to invoke watcher as background thread\n"
             "  -h --help     Show this screen.\n"
             "  --version     Show version.\n"
             "\n"))

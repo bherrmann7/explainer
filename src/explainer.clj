@@ -22,12 +22,12 @@
 ;; ]
 
 (defn -main [& args]
-  (println "args" args)
   (let [pargs (cli/parse-cli args)
         verbose (get pargs "--verbose")
         debug (get pargs "--debug")
         say (fn [& args] (if verbose (apply println args) nil))
         say-debug (fn [& args] (if debug (apply println args) nil))
+        _ (say "raw args:" args)
         _ (say "parsed args:" pargs)
         context-raw {:say say
                      :say-debug say-debug
@@ -36,7 +36,8 @@
                      :output-dir (get pargs "--output-dir")
                      :output-filename "index.html"
                      :input-dir  (get pargs "--input-dir")
-                     :input-filename "doc.edn"}
+                     :input-filename "doc.edn"
+                     :repl (get pargs "--repl") }
         {:keys [watch-flag output-dir input-dir input-filename output-filename]} context-raw
         context (assoc context-raw
                        :input-edn-file  (str input-dir "/" input-filename)
@@ -60,3 +61,6 @@
 
       (if watch-flag (watch/watcher context providers) nil))))
 
+(comment
+  (-main "-w")
+ )

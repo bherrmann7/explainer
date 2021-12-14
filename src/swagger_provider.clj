@@ -10,17 +10,19 @@
 (defn is-newer  [ {:keys [input-dir output-dir say say-debug]} file ]
   (utils/is-newer (str input-dir "/" file) (str output-dir "/" file)))
 
+
+(def swagger-header "
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.2/swagger-ui.css' integrity='sha512-sFCybMLlCEgtHSq/iUUG/HL4PKfg5l/qlA2scyRpDWTZU8hWOomj/CrOTxpi9+w8rODDy+crxi2VxhLZ+gehWg==' crossorigin='anonymous' referrerpolicy='no-referrer' />
+<script src='https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.2/swagger-ui-bundle.js' integrity='sha512-qoOARXHXcSln7mnJQDGGnPYheEGFOPjlO+cV3KaHlLnTcJJZCZTqyPv7fMX269MuWe3nwQWEilTuuUGjDB4wSA==' crossorigin='anonymous' referrerpolicy='no-referrer'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.2/swagger-ui-standalone-preset.js' integrity='sha512-Gk8awVM/iz6LZyVlo/5stCZnZvawpFWhrOHDYy5pLkQoCYrVw26PO9WBuVCObRdcUSlddvYmzHv/lHrrgn1N4Q==' crossorigin='anonymous' referrerpolicy='no-referrer'></script>")
+
+
 (defn is-dirty
   "esnure file files are in the ouput dir and up to date"
   [context  filename]
-  (let [ docs-to-watch-swagger [
-                        "swagger-ui-bundle.js"
-                        "swagger-ui.css"
-                        "swagger-ui.js"
-                        "swagger-ui-standalone-preset.js" ]
+  (let [ 
         yml-file (str filename ".yml")
-        all-files (conj docs-to-watch-swagger yml-file)
-        updated-files (filter #(is-newer context %) all-files)
+        updated-files (filter #(is-newer context %) [yml-file])
         ]
     (if (empty? updated-files)
       false
@@ -29,17 +31,17 @@
         true))))
 
 (defn create-swagger-html [ base-name ]
-  (str "<link rel='stylesheet' type='text/css' href='swagger-ui.css' />
-  <style>
+  (str
+   ;; ideally we would only mention the header once
+   swagger-header
+  "<style>
       /* suppress the yml link */
       .swagger-ui .info hgroup.main a {
         display: none
       }
     </style>
-  <script src='swagger-ui-bundle.js' charset='UTF-8'> </script>
-  <script src='swagger-ui-standalone-preset.js' charset='UTF-8'> </script>
-  <script>
-    window.onload = function() {
+   <script>
+     window.addEventListener('load', (event) => {
       // Begin Swagger UI call region
       const ui = SwaggerUIBundle({
           url: '" base-name ".yml',
@@ -47,8 +49,8 @@
         deepLinking: true,
         presets: [
           SwaggerUIBundle.presets.apis,
-          // slice(1) gets rid of banner
-          SwaggerUIStandalonePreset.slice(1)
+          // using .slice(1) gets rid of banner
+          SwaggerUIStandalonePreset.slice(1) 
         ],
         plugins: [
           SwaggerUIBundle.plugins.DownloadUrl
@@ -57,8 +59,9 @@
       });
       // End Swagger UI call region
 
-      window.ui = ui; 
-    };
+      // I'm not entirely sure if this is needed
+      window.ui_" base-name " = ui;
+    });
   </script>
   <div id='" base-name "-swagger-ui'></div>
 "))

@@ -11,6 +11,7 @@
    [dot-file-provider]
    [js-file-provider]
    [swagger-provider]
+   [resource-provider]
    [unknown-provider]))
 
 (defn get-chunk-providers [context [chunk-type chunk-data]]
@@ -21,6 +22,7 @@
     :dot-file (dot-file-provider/->Provider context chunk-data)
     :js-file (js-file-provider/->Provider context chunk-data)
     :swagger-inline (swagger-provider/->Provider context chunk-data)
+    :resource (resource-provider/->Provider context chunk-data)
     (unknown-provider/->Provider chunk-type chunk-data)))
 
 (defn load-chunks [input-filename]

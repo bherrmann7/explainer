@@ -59,6 +59,9 @@
  :dot-file "figure.dot"
  :html "<br></div>"
 
+ ;; image used in following block of hiccup
+ :resource "typicalworkflow.png"
+ 
  :html-hiccup [:div
                [:br]
                [:h3 "Install as local command"]
@@ -122,9 +125,8 @@
 
                [:h3 "TODO"]
                [:ul
-                [:li "handle image resources (aka you add a picture to
-                the input dir -  like " [:code ":resource \"picture.png\" "]
-                 "This ensures the input gets copied to the output directory "]
+                [:li "make reloader an automatic chunk if in watch mode" ]
+
                 [:li "swagger resources should be handled more
                 automatically (ie. if you mention swagger, then they
                 get added on demand)"]
