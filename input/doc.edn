@@ -125,14 +125,12 @@
 
                [:h3 "TODO"]
                [:ul
-                [:li "make reloader an automatic chunk if in watch mode" ]
+                [:li "make reloader an automatic chunk if in watch mode (post process providers and insert chunk if in watch mode? should the reloader js be inlined? as a reloader provider?)" ]
+                [:li "doing -w should automatically add the provider " [:code ":javascript \"_reloader.js\"" ]  " ??? " ]
 
-                [:li "swagger resources should be handled more
-                automatically (ie. if you mention swagger, then they
-                get added on demand)"]
-                [:li "consider something like a resource pack (ie for swagger, or watch mode)"]
+                [:li "create video demoing explainer - kind of the ultimate fail for something which is supposed to explain things."]
+
                 [:li "consider aliases, for example " [:code ":bootstrap 3"] " adds a boostrap thing from ~/.explainer-aliases"]
-                [:li "doing -w should automatically add the provider " [:code ":javascript \"_reloader.js\"" ] ]
                 ]
                
 
