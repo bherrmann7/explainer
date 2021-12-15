@@ -2,7 +2,6 @@
 (ns providers
   (:require
    [clojure.string :as str]
-   [cli]
    [utils]
    [chunk-provider]
    [html-provider]
@@ -12,9 +11,12 @@
    [js-file-provider]
    [swagger-provider]
    [resource-provider]
+   [watch-reloader-provider]
    [unknown-provider]))
 
-(defn get-chunk-providers [context [chunk-type chunk-data]]
+(defn get-chunk-providers
+  "given a type and data, return the appropriate provider.  A bit like a factory."
+  [context [chunk-type chunk-data]]
   (case chunk-type
     :html (html-provider/->Provider chunk-data)
     :html-hiccup (hiccup-provider/->Provider chunk-data)
@@ -25,19 +27,28 @@
     :resource (resource-provider/->Provider context chunk-data)
     (unknown-provider/->Provider chunk-type chunk-data)))
 
-(defn load-chunks [input-filename]
+(defn load-chunks
+  "load edn data into memory"
+  [input-filename]
   (let [chunks (partition 2 (read-string (slurp input-filename)))]
     chunks))
 
-;; (let [{:keys [name location description]} client]
-(defn build-providers [context]
-  (let [{:keys [input-dir input-filename]} context
+(defn prepend-watch-reload-provider [edn-file-providers]
+  (conj edn-file-providers (watch-reloader-provider/->Provider)))
+
+(defn build-providers
+  "load inital edn file, and break into collection of providers.  Handle special watch provider also."
+  [{:keys [input-dir input-filename watch-flag], :as context}]
+  (let [
         input-edn-file (str input-dir "/" input-filename)
         _ (if (not (.exists (java.io.File. input-edn-file))) (utils/die "Input file does not exist: " input-edn-file) nil)
-        providers (map #(get-chunk-providers context %) (load-chunks input-edn-file))]
+        edn-file-providers (map #(get-chunk-providers context %) (load-chunks input-edn-file))
+        providers (if watch-flag (prepend-watch-reload-provider edn-file-providers) edn-file-providers)]
     providers))
 
-(defn write-page [context providers]
+(defn write-page
+  "Loop through the providers and output the page by extracting each provider's content"
+  [context providers]
   (let [{:keys [output-web-page say]} context
         web-page-content (str/join (map chunk-provider/as-html providers))]
     (spit output-web-page web-page-content)
