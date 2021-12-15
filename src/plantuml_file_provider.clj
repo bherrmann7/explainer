@@ -14,7 +14,7 @@
         plantuml-reader (SourceStringReader. input-contents)
         png-filename (utils/create-image-filename filename ".pu")
         png-output-stream (java.io.FileOutputStream. (str output-dir "/" png-filename))
-        dd (.outputImage plantuml-reader png-output-stream)]
+        _ (.outputImage plantuml-reader png-output-stream)]
     (.close png-output-stream)
     (str "<img src=" png-filename " />")))
 
@@ -22,10 +22,9 @@
   "If the dot source file has changed, rebuild the output file"
   [context filename]
   (let
-   [{:keys [input-dir output-dir say-debug]} context
+   [{:keys [input-dir output-dir]} context
     input-filename (str input-dir "/" filename)
     output-filename (str output-dir "/" (utils/create-image-filename filename ".pu"))]
-    (say-debug "                is " input-filename " newer than " output-filename "? " (utils/is-newer input-filename output-filename))
     (utils/is-newer input-filename output-filename)))
 
 (deftype Provider [context data]

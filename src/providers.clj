@@ -49,10 +49,10 @@
 (defn write-page
   "Loop through the providers and output the page by extracting each provider's content"
   [context providers]
-  (let [{:keys [output-web-page say]} context
-        web-page-content (str/join (map chunk-provider/as-html providers))]
+  (let [{:keys [output-web-page verbose]} context
+        web-page-content (str/join "\n\n" (map chunk-provider/as-html providers))]
     (spit output-web-page web-page-content)
-    (say "Wrote " output-web-page)))
+    (verbose "Wrote " output-web-page)))
 
 (defn is-edn-dirty [context]
   (let [{:keys [input-edn-file  output-web-page]} context]

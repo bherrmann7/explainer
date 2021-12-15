@@ -25,10 +25,15 @@
                the input file and produces output for each section. "]
 
                [:p "For plantUML sections, the plantUML api is invoked
-               and the diagram is generated.   See " [:a {:href "https://plantuml.com/"} "https://plantuml.com/"]]
+               and the diagram is generated.  See " [:a
+               {:href "https://plantuml.com/"} "https://plantuml.com/"] "The
+               easy way to create a plantuml diagram is to find a good
+               diagram on the plantuml site, then click on in.  You
+               can then develop the diagram in the cloud, and when
+               finished copy the text into explainer"]
 
                [:p "for dot sections, the graphvis dot graph is generated and the image included.  See "
-                [:a {href "https://renenyffenegger.ch/notes/tools/Graphviz/examples/index"} "Graphvis dot examples"]]
+                [:a {:href "https://renenyffenegger.ch/notes/tools/Graphviz/examples/index"} "Graphvis (dot) examples"] " and " [:a { :href "https://graphviz.org/" } "https://graphviz.org/" ] ]
 
                [:p "For example, Using this as the 'doc.edn' file,"]
                [:div {:style "background-color: #fffacd; width: 800px; padding: 10px;"}

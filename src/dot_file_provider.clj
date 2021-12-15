@@ -23,10 +23,9 @@
   "If the dot source file has changed, rebuild the output file"
   [context filename]
   (let
-   [{:keys [input-dir output-dir say say-debug]} context
+   [{:keys [input-dir output-dir]} context
     input-filename (str input-dir "/" filename)
     output-filename (str output-dir "/" (utils/create-image-filename filename ".dot"))]
-    (say-debug "                is " input-filename " newer than " output-filename "? " (utils/is-newer input-filename output-filename))
     (utils/is-newer input-filename output-filename)))
 
 (deftype Provider [context data]
