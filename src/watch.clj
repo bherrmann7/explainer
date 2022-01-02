@@ -2,6 +2,7 @@
 (ns watch
   (:require [providers]
             [web-server]
+            [watch-reloader-provider]
             [chunk-provider]))
 
 (use '[clojure.java.shell :only [sh]])
@@ -13,7 +14,6 @@
 
 ;; rebuild entire page and all providers
 (defn rebuild-all [{:keys [output-web-page input-dir], :as  context}]
-  (let [reloader-text (slurp (str input-dir "/reloader.js"))]
     (try
       (let [providers (providers/build-providers context)]
         (reset! last-providers providers)
@@ -22,8 +22,8 @@
         )
         (catch Throwable thr (do
                                (println "\nError... " str)
-                             (spit output-web-page (str "<script>" reloader-text "</script>" thr)))))
-      (swap! version inc)))
+                               (spit output-web-page (str watch-reloader-provider/reloader-javascript  thr)))))
+      (swap! version inc))
 
 (defn check-chunks-for-changes [context providers]
   (let [
@@ -54,7 +54,7 @@
   
   (web-server/start (:output-dir context) version)
 
-  (sh "xdg-open" "http://localhost:3000/index.html")
+  (future (sh "xdg-open" "http://localhost:3000/index.html"))
 
   (do-forever context))
 

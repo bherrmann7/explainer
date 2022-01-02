@@ -11,14 +11,22 @@
                [:br]
                [:h3 "Why would you use it?"]
 
-               "To generate some quick documenation about how something
-              works.  There are other more complicated systems out
-              there, " [:a {:href "https://asciidoctor.org/"} "asciidoctor"] " looked cool, but also complicated."
+               "To generate some quick documenation about how
+              something works. You can simply use html - but explainer
+              provides more content types.  There are other more
+              complicated systems out there for generating html pages, " [:a
+              {:href "https://asciidoctor.org/"} "asciidoctor"] "
+              looked cool, but also complicated. "
 
                [:br]
                [:br]
                [:h3 "How does it work?"]
 
+               [:p "Essentially you create content 'chunks' and
+               explainer packages them into an html file for sharing.
+               The chunks can be of several different types."
+                ]
+               
                [:p
                 "You create an input file (ie doc.edn), then execute the
                'explainer' program.  It walks through each block of
@@ -40,34 +48,29 @@
 
                 [:pre
                  "[ 
-      :js-file \"myjavascript.js\"  ;; inserts the javascript into the document
       :html \"&lt;h3>Authentication Example &lt;/h3>\"
       :html-hiccup [:div \"Alice authenticates via Bob.\" [:br] [:br] ] ]
       :plantuml-file \"diagram.pu\"
-      :html \"&lt;br>&lt;br>A dot example&lt;br>\"
-      :dot-file \"figure.dot\"
 ]"]]
 
                [:br]
                "The following output is generated;"
                [:br]
                [:br]]
-
+ 
  :html "<div style='background-color: #fffacd; padding:10px; width: 800px;'>"
  :html "<h3>Authentication Example</h3>"
  :html-hiccup [:div "Alice authenticates via Bob." [:br] [:br]]
  :plantuml-file "diagram.pu"
- :html "<br><br>A dot example<br>"
- :dot-file "figure.dot"
  :html "<br></div>"
 
  ;; image used in following block of hiccup
  :resource "typicalworkflow.png"
- 
+
  :html-hiccup [:div
                [:br]
                [:h3 "Install as local command"]
-               [:div "The install script puts two files in $HOME/bin.  <ol>"
+               [:div "The install script (install.sh) puts two files in $HOME/bin.  <ol>"
                 "<li>A shell executable named 'explainer'"
                 "<li>A uberjar used by the script.</ol>"]
                [:br]
@@ -128,11 +131,10 @@
                [:h3 "TODO"]
                [:ul
                 [:li "add markdown - inline and file"]
-                [:li "would be neat if the 'man page' documentation was obtained by running explainer.  So have a script-provider? " ]
-                [:li "create video demoing explainer - kind of the ultimate fail for something which is supposed to explain things."]
+                [:li "add a doc multi method for each explainer command which returns providers? (turtles all the way down)"]
+                [:li "create video demoing explainer - kind of the ultimate fail for something which is supposed to explain things, but videos work."]
                 [:li "consider aliases, for example " [:code ":bootstrap 3"] " adds a boostrap thing from ~/.explainer-aliases and/or have built-in aliases."]
-                [:li "docs for each provider?" ]
-                ]
+               ]
 
                [:h3 "Perhaps / Maybe / Ideas"]
                [:ul
