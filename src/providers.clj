@@ -12,7 +12,20 @@
    [swagger-provider]
    [resource-provider]
    [watch-reloader-provider]
-   [unknown-provider]))
+   [unknown-provider]
+   [document-chunks-provider]
+   ))
+
+(def document-all-providers [
+    (html-provider/->Provider nil)
+    (hiccup-provider/->Provider nil)
+    (plantuml-file-provider/->Provider nil nil)
+    (dot-file-provider/->Provider nil nil)
+    (js-file-provider/->Provider nil nil)
+    (swagger-provider/->Provider nil nil)
+    (resource-provider/->Provider nil nil)
+    (unknown-provider/->Provider nil nil)
+  (document-chunks-provider/->Provider nil)])
 
 (defn get-chunk-providers
   "given a type and data, return the appropriate provider.  A bit like a factory."
@@ -25,6 +38,7 @@
     :js-file (js-file-provider/->Provider context chunk-data)
     :swagger-inline (swagger-provider/->Provider context chunk-data)
     :resource (resource-provider/->Provider context chunk-data)
+    :document-chunks (document-chunks-provider/->Provider document-all-providers)
     (unknown-provider/->Provider chunk-type chunk-data)))
 
 (defn load-chunks

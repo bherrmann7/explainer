@@ -40,16 +40,12 @@
                can then develop the diagram in the cloud, and when
                finished copy the text into explainer"]
 
-               [:p "for dot sections, the graphvis dot graph is generated and the image included.  See "
-                [:a {:href "https://renenyffenegger.ch/notes/tools/Graphviz/examples/index"} "Graphvis (dot) examples"] " and " [:a { :href "https://graphviz.org/" } "https://graphviz.org/" ] ]
-
                [:p "For example, Using this as the 'doc.edn' file,"]
-               [:div {:style "background-color: #fffacd; width: 800px; padding: 10px;"}
+               [:div {:style "background-color: #fffacd; width: 900px; padding: 10px;"}
 
                 [:pre
                  "[ 
-      :html \"&lt;h3>Authentication Example &lt;/h3>\"
-      :html-hiccup [:div \"Alice authenticates via Bob.\" [:br] [:br] ] ]
+      :html-hiccup [:div [:h3 \"Authentication Example\" ] [:br] [:br] ] ]
       :plantuml-file \"diagram.pu\"
 ]"]]
 
@@ -59,12 +55,17 @@
                [:br]]
  
  :html "<div style='background-color: #fffacd; padding:10px; width: 800px;'>"
- :html "<h3>Authentication Example</h3>"
- :html-hiccup [:div "Alice authenticates via Bob." [:br] [:br]]
+ :html-hiccup [:div [:h3 "Authentication Example" ] [:br] ]
  :plantuml-file "diagram.pu"
  :html "<br></div>"
 
- ;; image used in following block of hiccup
+
+ :html-hiccup [:div [:br] [:h3 "Chunk Types" ] ]
+
+ :document-chunks nil
+
+ ;; image used in following block of hiccup. The :resource needs to just be
+ ;; somewhere in the document so that the image file gets copied
  :resource "typicalworkflow.png"
 
  :html-hiccup [:div

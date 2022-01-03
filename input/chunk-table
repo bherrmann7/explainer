@@ -1,0 +1,25 @@
+
+| chunk type  | description | example usage |
+
+| :html     | A raw html section.  The gold standard for displaying content in a browser.  | :html "\<b>cat\</b>" |
+
+| :html-hiccup | hiccup is a representation of html in clojure's edn format | [:h1 "cat" ] |
+
+| :js-file | inserts a js file into current document | :js-file "myjs.fo" |
+
+| :plantuml-file | describes the chunk as a plantuml diagram.  The argument of the chunk type is the file.  The file contains a plantuml text input for a diagram.  explainer uses the plantuml library to generate the image and inserts the html to render the image on the page | :plantuml-file "alice-bob.pu" |
+
+
+| :dot-file | a dot file is a variation on the plantuml-file.  The input is a graphvis file. | :dot-file "figure.dot" |
+
+| :resource | resource data needed for page communicates that a
+  resource is need for a page.  Typically a png or jpg file which is
+  referenced in the :html or :html-provider | :resource "cat.jgp" |
+  
+
+
+
+               [:p "for dot sections, the graphvis dot graph is generated and the image included.  See "
+                [:a {:href "https://renenyffenegger.ch/notes/tools/Graphviz/examples/index"} "Graphvis (dot) examples"] " and " [:a { :href "https://graphviz.org/" } "https://graphviz.org/" ] ]
+
+
