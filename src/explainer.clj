@@ -35,4 +35,5 @@
 
 (comment
   (-main "-v" "-d")
+  (-main "-v" "-d" "-w" "-r")
  )
