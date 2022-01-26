@@ -25,9 +25,8 @@
 (defn parse-cli [args]
   (into {} (.parse (.withVersion (Docopt. usage) "alpha") (into [] args))))
 
-(defn create [ args ]
-  (let [
-        pargs (parse-cli args)
+(defn create [args]
+  (let [pargs (parse-cli args)
         verbose (fn [& args] (if (get pargs "--verbose") (apply println (conj args "verbose ")) nil))
         debug (fn [& args] (if (get pargs "--debug") (apply println (conj args "debug ")) nil))
         _ (verbose "raw args:" args)
@@ -38,12 +37,11 @@
                      :output-dir (get pargs "--output-dir")
                      :input-dir  (get pargs "--input-dir")
 
-                     :repl (get pargs "--repl") 
+                     :repl (get pargs "--repl")
                      :input-filename "doc.edn"
-                     :output-filename "index.html"
-                     }
+                     :output-filename "index.html"}
         {:keys [output-dir input-dir input-filename output-filename]} context-raw
         context (assoc context-raw
                        :input-edn-file  (str input-dir "/" input-filename)
                        :output-web-page (str output-dir "/" output-filename))]
-  context))
+    context))

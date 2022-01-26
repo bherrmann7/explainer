@@ -17,10 +17,9 @@
 
 (defn -main [& args]
   (let [ctx (context/create args)
-        {:keys [verbose watch-flag]} ctx
-        ]
-       
-    ;; ensure the output dir exists.
+        {:keys [verbose watch-flag]} ctx]
+
+;; ensure the output dir exists.
     (.mkdir (java.io.File. (:output-dir ctx)))
 
     (let [providers (providers/build-providers ctx)]
@@ -35,5 +34,4 @@
 
 (comment
   (-main "-v" "-d")
-  (-main "-v" "-d" "-w" "-r")
- )
+  (-main "-v" "-d" "-w" "-r"))

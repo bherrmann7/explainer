@@ -4,6 +4,8 @@
   hiccup/hiccup  {:mvn/version "1.0.5"}
   net.sourceforge.plantuml/plantuml {:mvn/version "1.2021.14"}
   com.offbytwo/docopt {:mvn/version "0.6.0.20150202"}
+  metosin/malli {:mvn/version "0.8.0"}
+  rewrite-clj/rewrite-clj {:mvn/version "1.0.699-alpha"}
   ring/ring-core {:mvn/version "1.8.2"}
   ring/ring-jetty-adapter {:mvn/version "1.8.2"}}
 

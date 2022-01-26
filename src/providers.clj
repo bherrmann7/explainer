@@ -13,18 +13,17 @@
    [resource-provider]
    [watch-reloader-provider]
    [unknown-provider]
-   ))
+   [malli.core :as m]
+   [malli.dev.pretty]))
 
-(def document-all-providers [
-    (html-provider/->Provider nil)
-    (hiccup-provider/->Provider nil)
-    (plantuml-file-provider/->Provider nil nil)
-    (dot-file-provider/->Provider nil nil)
-    (js-file-provider/->Provider nil nil)
-    (swagger-provider/->Provider nil nil)
-    (resource-provider/->Provider nil nil)
-    (unknown-provider/->Provider nil nil)
-                             ])
+(def document-all-providers [(html-provider/->Provider nil)
+                             (hiccup-provider/->Provider nil)
+                             (plantuml-file-provider/->Provider nil nil)
+                             (dot-file-provider/->Provider nil nil)
+                             (js-file-provider/->Provider nil nil)
+                             (swagger-provider/->Provider nil nil)
+                             (resource-provider/->Provider nil nil)
+                             (unknown-provider/->Provider nil nil)])
 
 (defn get-chunk-providers
   "given a type and data, return the appropriate provider.  A bit like a factory."
@@ -35,14 +34,20 @@
     :plantuml-file (plantuml-file-provider/->Provider context chunk-data)
     :dot-file (dot-file-provider/->Provider context chunk-data)
     :js-file (js-file-provider/->Provider context chunk-data)
-    :swagger-inline (swagger-provider/->Provider context chunk-data)
+    :swagger-file (swagger-provider/->Provider context chunk-data)
     :resource (resource-provider/->Provider context chunk-data)
     (unknown-provider/->Provider chunk-type chunk-data)))
+
+(def input-schema [:+ [:catn [:s keyword?] [:n any?]]])
 
 (defn load-chunks
   "load edn data into memory"
   [input-filename]
-  (let [chunks (partition 2 (read-string (slurp input-filename)))]
+  (let [input-as-edn (read-string (slurp input-filename))
+        _ (if (m/validate input-schema input-as-edn)
+            nil
+            (utils/die "input file, " input-filename ", must contain pairs of chunk-type (edn keyword) and chunk-data."))
+        chunks (partition 2 input-as-edn)]
     chunks))
 
 (defn prepend-watch-reload-provider [edn-file-providers]
@@ -51,8 +56,7 @@
 (defn build-providers
   "load inital edn file, and break into collection of providers.  Handle special watch provider also."
   [{:keys [input-dir input-filename watch-flag], :as context}]
-  (let [
-        input-edn-file (str input-dir "/" input-filename)
+  (let [input-edn-file (str input-dir "/" input-filename)
         _ (if (not (.exists (java.io.File. input-edn-file))) (utils/die "Input file does not exist: " input-edn-file) nil)
         edn-file-providers (map #(get-chunk-providers context %) (load-chunks input-edn-file))
         providers (if watch-flag (prepend-watch-reload-provider edn-file-providers) edn-file-providers)]
@@ -69,4 +73,6 @@
 (defn is-edn-dirty [context]
   (let [{:keys [input-edn-file  output-web-page]} context]
     (utils/is-newer input-edn-file output-web-page)))
+
+
 

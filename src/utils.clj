@@ -8,8 +8,8 @@
   (System/exit 3))
 
 (defn is-newer [first-filename second-filename]
-  (let [ f1 (java.io.File. first-filename)
-         f2 (java.io.File. second-filename) ]
+  (let [f1 (java.io.File. first-filename)
+        f2 (java.io.File. second-filename)]
     (if (.exists f2)
       (> (.lastModified f1) (.lastModified f2))
       true)))

@@ -29,9 +29,11 @@
                "To generate some quick documenation about how
               something works. You can simply use html - but explainer
               provides more content types.  There are other more
-              complicated systems out there for generating html pages, " [:a
+              complicated systems out there for generating html
+              pages, " [:a
               {:href "https://asciidoctor.org/"} "asciidoctor"] "
-              looked cool, but also complicated. "
+              looked cool, but also complicated.   Also consider " [:a
+              {:href "https://github.com/nextjournal/clerk" } "Clerk" ]
 
                [:br]
                [:br]
@@ -89,7 +91,7 @@
                [:h4 ":html-hiccup" ]
                "Hiccup is a representation of html in clojure's edn format"
                [:br]
-               [:span.ex "[:h1 \"cat\" ]" ]
+               [:span.ex ":html-hiccup [:h1 \"cat\" ]" ]
 
                [:h4 ":js-file" ]
                "Inserts a js file at the current location in the document"
@@ -107,12 +109,18 @@
                [:br]
                [:span.ex ":dot-file \"figure.dot\"" ]
 
-               [:div ":resource" ]
+               [:h4 ":resource" ]
                "Resource file needed for a page.  Typically a png or
 jpg file which is referenced in the :html or :html-provider.  This is
 needed to tell explainer to copy the resource from the input directory
 to the output directory"
+               [:br]
                [:span.ex ":resource \"cat.jgp\""] 
+
+               [:h4 ":swagger-file" ]
+               "Provide a swagger yaml-file and it inserts the API"
+               [:br]
+               [:span.ex ":swagger-file  \"my-swagger-file.yml\"" ]
 
                [:br]
                [:br]
@@ -149,9 +157,10 @@ to the output directory"
                [:p "The output page has a small bit of injected
                javascript which checks to see if the document version
                has changed.  If the version has changed, the page is
-               reloaded.  The endpoint for checking the version is;"]]
+               reloaded.  The endpoint for checking the version is;"]
+               ]
 
- :swagger-inline "reloader"
+ :swagger-file "reloader.yml"
 
  :html-hiccup [:div
 
@@ -191,5 +200,7 @@ to the output directory"
                 [:li "consider using jtidy to clean up output"]
                 [:li "consider indenting the doc.edn doc"]]]
 
- :html "Enjoy!<br>-bob</div>"]
+ :html "Enjoy!<br>-bob</div>"
+
+ ]
 

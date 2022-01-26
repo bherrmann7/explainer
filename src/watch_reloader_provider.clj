@@ -37,7 +37,7 @@ function seeIfPageUpdated(){
 setTimeout( seeIfPageUpdated, POLL_TIME);
 </script>
 ")
-  
+
 (deftype Provider []
   ChunkProviderProtocol
   (as-html [_] reloader-javascript)
