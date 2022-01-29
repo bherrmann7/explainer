@@ -1,6 +1,6 @@
 
-(ns html-provider
-  (:require [chunk-provider :refer [ChunkProviderProtocol]]))
+(ns providers.html-provider
+  (:require [providers.chunk-provider :refer [ChunkProviderProtocol]]))
 
 (deftype Provider [data]
   ChunkProviderProtocol

@@ -1,5 +1,5 @@
 
-(ns context)
+(ns cli)
 
 (import org.docopt.Docopt)
 
@@ -25,7 +25,9 @@
 (defn parse-cli [args]
   (into {} (.parse (.withVersion (Docopt. usage) "alpha") (into [] args))))
 
-(defn create [args]
+(defn create
+  "Takes in the command lines and defaults and builds the progams running 'context' or configuration values."
+  [args]
   (let [pargs (parse-cli args)
         verbose (fn [& args] (if (get pargs "--verbose") (apply println (conj args "verbose ")) nil))
         debug (fn [& args] (if (get pargs "--debug") (apply println (conj args "debug ")) nil))

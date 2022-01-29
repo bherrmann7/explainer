@@ -1,6 +1,6 @@
 
-(ns js-file-provider
-  (:require [chunk-provider :refer [ChunkProviderProtocol]]
+(ns providers.js-file-provider
+  (:require [providers.chunk-provider :refer [ChunkProviderProtocol]]
             [utils]))
 
 (defn create-js-file [context filename]

@@ -1,6 +1,6 @@
 
-(ns hiccup-provider
-  (:require [chunk-provider :refer [ChunkProviderProtocol]]
+(ns providers.hiccup-provider
+  (:require [providers.chunk-provider :refer [ChunkProviderProtocol]]
             [hiccup.core]))
 
 (deftype Provider [data]

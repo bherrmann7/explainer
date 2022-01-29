@@ -1,42 +1,38 @@
 
-(ns providers
+;; BOBH yea...
+(ns providers.manager
   (:require
    [clojure.string :as str]
    [utils]
-   [chunk-provider]
-   [html-provider]
-   [hiccup-provider]
-   [plantuml-file-provider]
-   [dot-file-provider]
-   [js-file-provider]
-   [swagger-provider]
-   [resource-provider]
-   [watch-reloader-provider]
-   [unknown-provider]
+   [providers.chunk-provider]
+   [providers.html-provider]
+   [providers.hiccup-provider]
+   [providers.plantuml-file-provider]
+   [providers.dot-file-provider]
+   [providers.js-file-provider]
+   [providers.swagger-provider]
+   [providers.resource-provider]
+   [providers.watch-reloader-provider]
+   [providers.markdown-provider]
+   [providers.markdown-file-provider]
+   [providers.unknown-provider]
    [malli.core :as m]
    [malli.dev.pretty]))
-
-(def document-all-providers [(html-provider/->Provider nil)
-                             (hiccup-provider/->Provider nil)
-                             (plantuml-file-provider/->Provider nil nil)
-                             (dot-file-provider/->Provider nil nil)
-                             (js-file-provider/->Provider nil nil)
-                             (swagger-provider/->Provider nil nil)
-                             (resource-provider/->Provider nil nil)
-                             (unknown-provider/->Provider nil nil)])
 
 (defn get-chunk-providers
   "given a type and data, return the appropriate provider.  A bit like a factory."
   [context [chunk-type chunk-data]]
   (case chunk-type
-    :html (html-provider/->Provider chunk-data)
-    :html-hiccup (hiccup-provider/->Provider chunk-data)
-    :plantuml-file (plantuml-file-provider/->Provider context chunk-data)
-    :dot-file (dot-file-provider/->Provider context chunk-data)
-    :js-file (js-file-provider/->Provider context chunk-data)
-    :swagger-file (swagger-provider/->Provider context chunk-data)
-    :resource (resource-provider/->Provider context chunk-data)
-    (unknown-provider/->Provider chunk-type chunk-data)))
+    :html (providers.html-provider/->Provider chunk-data)
+    :html-hiccup (providers.hiccup-provider/->Provider chunk-data)
+    :plantuml-file (providers.plantuml-file-provider/->Provider context chunk-data)
+    :dot-file (providers.dot-file-provider/->Provider context chunk-data)
+    :js-file (providers.js-file-provider/->Provider context chunk-data)
+    :swagger-file (providers.swagger-provider/->Provider context chunk-data)
+    :resource (providers.resource-provider/->Provider context chunk-data)
+    :markdown   (providers.markdown-provider/->Provider chunk-data)
+    :markdown-file (providers.markdown-file-provider/->Provider context chunk-data)
+    (providers.unknown-provider/->Provider chunk-type chunk-data)))
 
 (def input-schema [:+ [:catn [:s keyword?] [:n any?]]])
 
@@ -51,7 +47,7 @@
     chunks))
 
 (defn prepend-watch-reload-provider [edn-file-providers]
-  (conj edn-file-providers (watch-reloader-provider/->Provider)))
+  (conj edn-file-providers (providers.watch-reloader-provider/->Provider)))
 
 (defn build-providers
   "load inital edn file, and break into collection of providers.  Handle special watch provider also."
@@ -66,7 +62,7 @@
   "Loop through the providers and output the page by extracting each provider's content"
   [context providers]
   (let [{:keys [output-web-page verbose]} context
-        web-page-content (str/join "\n\n" (map chunk-provider/as-html providers))]
+        web-page-content (str/join "\n\n" (map providers.chunk-provider/as-html providers))]
     (spit output-web-page web-page-content)
     (verbose "Wrote " output-web-page)))
 

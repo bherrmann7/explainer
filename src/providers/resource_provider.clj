@@ -9,8 +9,8 @@
 ;;     :resource "browncow.png"   }
 
 
-(ns resource-provider
-  (:require [chunk-provider :refer [ChunkProviderProtocol]]
+(ns providers.resource-provider
+  (:require [providers.chunk-provider :refer [ChunkProviderProtocol]]
             [clojure.java.io :as io]
             [utils]))
 
@@ -27,4 +27,3 @@
                  ""))
   (is-dirty [_] (is-filename-newer context filename))
   (summary [_] (str "resource file: " filename)))
-

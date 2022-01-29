@@ -1,6 +1,6 @@
 
-(ns swagger-provider
-  (:require [chunk-provider :refer [ChunkProviderProtocol]]
+(ns providers.swagger-provider
+  (:require [providers.chunk-provider :refer [ChunkProviderProtocol]]
             [clojure.java.io :as io]
             [utils]))
 

@@ -1,7 +1,6 @@
 
-(ns watch-reloader-provider
-  (:require [chunk-provider :refer [ChunkProviderProtocol]]
-            [clojure.java.io :as io]
+(ns providers.watch-reloader-provider
+  (:require [providers.chunk-provider :refer [ChunkProviderProtocol]]
             [utils]))
 
 ;; This is inlined as I didnt want to fiddle with makeing this a resource which is streamed.

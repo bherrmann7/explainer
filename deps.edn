@@ -7,7 +7,9 @@
   metosin/malli {:mvn/version "0.8.0"}
   rewrite-clj/rewrite-clj {:mvn/version "1.0.699-alpha"}
   ring/ring-core {:mvn/version "1.8.2"}
-  ring/ring-jetty-adapter {:mvn/version "1.8.2"}}
+  ring/ring-jetty-adapter {:mvn/version "1.8.2"}
+  markdown-clj/markdown-clj {:mvn/version "1.10.8"}
+  }
 
  :aliases
  {:xj {:exec-fn explainer/-main}

@@ -1,6 +1,6 @@
 
-(ns unknown-provider
-  (:require [chunk-provider :refer [ChunkProviderProtocol]]))
+(ns providers.unknown-provider
+  (:require [providers.chunk-provider :refer [ChunkProviderProtocol]]))
 
 (deftype Provider [type data]
   ChunkProviderProtocol

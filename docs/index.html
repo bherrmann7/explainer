@@ -18,10 +18,10 @@
 
 <div><h1>Explainer - a simple program for explaining things</h1><br /><h3>Why would you use it?</h3>To generate some quick documenation about how
               something works. You can simply use html - but explainer
-              provides more content types.  There are other more
-              complicated systems out there for generating html
-              pages, <a href="https://asciidoctor.org/">asciidoctor</a>
-              looked cool, but also complicated.   Also consider <a href="https://github.com/nextjournal/clerk">Clerk</a><br /><br /><h3>How does it work?</h3><p>Essentially you create content 'chunks' and
+              provides more content types. (ie. plantuml, dot,
+              markdown) There are other more complicated systems out
+              there for generating html pages, <a href="https://asciidoctor.org/">asciidoctor</a>
+              looked cool, but also complicated.  Also consider <a href="https://github.com/nextjournal/clerk">Clerk</a><br /><br /><h3>How does it work?</h3><p>Essentially you create content 'chunks' and
                explainer packages them into an html file for sharing.
                The chunks can be of several different types.</p><p>You create an input file (ie doc.edn) <a href="https://learnxinyminutes.com/docs/edn/">EDN
                data format</a>, then execute the 'explainer' program.
@@ -32,8 +32,9 @@
                diagram on the plantuml site, then click on in.  You
                can then develop the diagram in the cloud, and when
                finished copy the text into explainer</p><p>For example, Using this as the 'doc.edn' file,</p><span class="ex-block"><pre>[ 
-      :html-hiccup [:div [:h3 "Authentication Example" ] [:br] [:br] ] ]
-      :plantuml-file "diagram.pu"
+      ;; chunk type       chunk-data
+      :html-hiccup        [:div [:h3 "Authentication Example" ] [:br] [:br] ] ]
+      :plantuml-file      "diagram.pu"
 ]</pre></span><br />The following output is generated;<br /><br /></div>
 
 <div class='ex-block'>
@@ -49,15 +50,15 @@
 <div><br /><h3>Chunk Types</h3><h4>:html</h4>A raw html section.  The gold standard for displaying content in a browser.<br /><span class="ex">:html "&lt;b>cat&lt;/b>"</span><h4>:html-hiccup</h4>Hiccup is a representation of html in clojure's edn format<br /><span class="ex">:html-hiccup [:h1 "cat" ]</span><h4>:js-file</h4>Inserts a js file at the current location in the document<br /><span class="ex">:js-file "myjs.fo"</span><h4>:plantuml-file</h4>Describes the chunk as a plantuml diagram.  The argument of the chunk type is the file.  The file contains a plantuml text input for a diagram.  explainer uses the plantuml library to generate the image and inserts the html to render the image on the page<br /><span class="ex">:plantuml-file "alice-bob.pu"</span><h4>:dot-file</h4>A dot file is a variation on the plantuml-file.  The input is a graphvis file. See <a href="https://renenyffenegger.ch/notes/tools/Graphviz/examples/index">Graphvis (dot) examples</a> and <a href="https://graphviz.org/">https://graphviz.org/</a><br /><span class="ex">:dot-file "figure.dot"</span><h4>:resource</h4>Resource file needed for a page.  Typically a png or
 jpg file which is referenced in the :html or :html-provider.  This is
 needed to tell explainer to copy the resource from the input directory
-to the output directory<br /><span class="ex">:resource "cat.jgp"</span><h4>:swagger-file</h4>Provide a swagger yaml-file and it inserts the API<br /><span class="ex">:swagger-file  "my-swagger-file.yml"</span><br /><br /><h3>Install as local command</h3><div>The install script (install.sh) puts two files in $HOME/bin.  <ol><li>A shell executable named 'explainer'<li>A uberjar used by the script.</ol></div><br /><h3>Quick Example</h3><pre>$ ./install.sh # installs to $HOME/bin/explainer 
+to the output directory<br /><span class="ex">:resource "cat.jgp"</span><h4>:swagger-file</h4>Provide a swagger yaml-file and it inserts the API<br /><span class="ex">:swagger-file  "my-swagger-file.yml"</span><h4>:markdown</h4>Provide markdown in the document. You can experiment with markdown at <a href="https://rawgit.com/yogthos/markdown-clj/master/demo/markdown.html">Yogthos markdown site</a><br /><span class="ex">:markdown-file  "# Boo
+Halloween involves candy.</span><h4>:markdown-file</h4>Provide a markdown file and insert it's contents as html<br /><span class="ex">:markdown-file  "my-markdown-file.md"</span><br /><br /><h3>Install as local command</h3><div>The install script (install.sh) puts two files in $HOME/bin.  <ol><li>A shell executable named 'explainer'<li>A uberjar used by the script.</ol></div><br /><h3>Quick Example</h3><pre>$ ./install.sh # installs to $HOME/bin/explainer 
 $ mkdir -p ~/cow/input && cd ~/cow 
 $ echo ' [ :html "&lt;h1>Goose&lt;/h1>" ] ' > input/doc.edn 
 $ explainer && google-chrome docs/index.html  </pre><br /><h3>Watch Mode</h3><p>When developing a document, using watch mode can
-               be helpful.  Typically means having
-               browser (ie. chrome) along side of an
-               editor (ie. emacs) with explainer running in watch
-               mode.  Everytime you save in the editor, explainer
-               updates the document. <pre>$ explainer -w</pre></p><img src="typicalworkflow.png" width="600" /><br /><br /><p>When running in watch mode, explainer checks for
+               be helpful.  Watch mode is used by having a browser
+               window along side of an editor window with explainer
+               running in watch mode.  Everytime you save in the
+               editor, explainer updates the document. </p><pre>$ explainer -w</pre><img src="typicalworkflow.png" width="600" /><br /><br /><p>When running in watch mode, explainer checks for
                changes three times a second.  When a timestamp on an
                input file changes, explainer regenerates the output. </p><p>The output page has a small bit of injected
                javascript which checks to see if the document version
@@ -114,4 +115,4 @@ Options:
 
 </pre><h3>TODO</h3><ul><li>add markdown - inline and file</li><li>add a doc multi method for each explainer command which returns providers? (turtles all the way down)</li><li>create video demoing explainer - kind of the ultimate fail for something which is supposed to explain things, but videos work.</li><li>consider aliases, for example <code>:bootstrap 3</code> adds a boostrap thing from ~/.explainer-aliases and/or have built-in aliases.</li></ul><h3>Perhaps / Maybe / Ideas</h3><ul><li>consider renaming the 'docs' directory to 'public_html' or 'www' or make the current dir the one with a *.edn file in it</li><li>handle generating multipage docs, :page 'development.edn'</li><li>Better error handling - indicate where the issue is (right now there is a blanket something went wrong)</li><li>consider using jtidy to clean up output</li><li>consider indenting the doc.edn doc</li></ul></div>
 
-Enjoy!<br>-bob</div>
+<h1>Enjoy!</h1>

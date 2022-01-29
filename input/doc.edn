@@ -28,12 +28,13 @@
 
                "To generate some quick documenation about how
               something works. You can simply use html - but explainer
-              provides more content types.  There are other more
-              complicated systems out there for generating html
-              pages, " [:a
+              provides more content types. (ie. plantuml, dot,
+              markdown) There are other more complicated systems out
+              there for generating html pages, " [:a
               {:href "https://asciidoctor.org/"} "asciidoctor"] "
-              looked cool, but also complicated.   Also consider " [:a
-              {:href "https://github.com/nextjournal/clerk" } "Clerk" ]
+              looked cool, but also complicated.  Also consider " [:a
+              {:href "https://github.com/nextjournal/clerk" } "Clerk"
+              ]
 
                [:br]
                [:br]
@@ -63,8 +64,9 @@
                [:span.ex-block 
                 [:pre
                  "[ 
-      :html-hiccup [:div [:h3 \"Authentication Example\" ] [:br] [:br] ] ]
-      :plantuml-file \"diagram.pu\"
+      ;; chunk type       chunk-data
+      :html-hiccup        [:div [:h3 \"Authentication Example\" ] [:br] [:br] ] ]
+      :plantuml-file      \"diagram.pu\"
 ]"]]
 
                [:br]
@@ -73,8 +75,9 @@
                [:br]]
  
  :html "<div class='ex-block'>"
- :html-hiccup [:div [:h3 "Authentication Example" ] [:br] ]
- :plantuml-file "diagram.pu"
+ ;; chunk type   chunk-data
+ :html-hiccup    [:div [:h3 "Authentication Example" ] [:br] ]
+ :plantuml-file  "diagram.pu"
  :html "<br></div>"
 
  :resource "typicalworkflow.png"
@@ -122,6 +125,19 @@ to the output directory"
                [:br]
                [:span.ex ":swagger-file  \"my-swagger-file.yml\"" ]
 
+               
+               [:h4 ":markdown" ]
+               "Provide markdown in the document. You can experiment with markdown at " [:a { :href "https://rawgit.com/yogthos/markdown-clj/master/demo/markdown.html"} "Yogthos markdown site" ]
+               [:br]
+               [:span.ex ":markdown-file  \"# Boo\nHalloween involves candy." ]
+
+
+               [:h4 ":markdown-file" ]
+               "Provide a markdown file and insert it's contents as html"
+               [:br]
+               [:span.ex ":markdown-file  \"my-markdown-file.md\"" ]
+
+               
                [:br]
                [:br]
                [:h3 "Install as local command"]
@@ -140,11 +156,11 @@ to the output directory"
 
                [:h3 "Watch Mode"]
                [:p "When developing a document, using watch mode can
-               be helpful.  Typically means having
-               browser (ie. chrome) along side of an
-               editor (ie. emacs) with explainer running in watch
-               mode.  Everytime you save in the editor, explainer
-               updates the document. " [:pre "$ explainer -w"]]
+               be helpful.  Watch mode is used by having a browser
+               window along side of an editor window with explainer
+               running in watch mode.  Everytime you save in the
+               editor, explainer updates the document. " ]
+               [:pre "$ explainer -w"]
                [:img {:src "typicalworkflow.png" :width 600}]
 
                [:br]
@@ -200,7 +216,7 @@ to the output directory"
                 [:li "consider using jtidy to clean up output"]
                 [:li "consider indenting the doc.edn doc"]]]
 
- :html "Enjoy!<br>-bob</div>"
+ :markdown "#Enjoy!"
 
  ]
 

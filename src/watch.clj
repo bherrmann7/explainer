@@ -1,9 +1,9 @@
 
 (ns watch
-  (:require [providers]
+  (:require [providers.manager]
             [web-server]
-            [watch-reloader-provider]
-            [chunk-provider]))
+            [providers.watch-reloader-provider]
+            [providers.chunk-provider]))
 
 (use '[clojure.java.shell :only [sh]])
 
@@ -15,23 +15,23 @@
 ;; rebuild entire page and all providers
 (defn rebuild-all [{:keys [output-web-page input-dir], :as  context}]
   (try
-    (let [providers (providers/build-providers context)]
+    (let [providers (providers.manager/build-providers context)]
       (reset! last-providers providers)
-      (providers/write-page context providers)
+      (providers.manager/write-page context providers)
       (println "\nUpdated all"))
     (catch Throwable thr (do
                            (println "\nError... " str)
-                           (spit output-web-page (str watch-reloader-provider/reloader-javascript  thr)))))
+                           (spit output-web-page (str providers.watch-reloader-provider/reloader-javascript  thr)))))
   (swap! version inc))
 
 (defn check-chunks-for-changes [context providers]
-  (let [dirty  (filter chunk-provider/is-dirty providers)]
+  (let [dirty  (filter providers.chunk-provider/is-dirty providers)]
     (doseq [dp dirty]
-      (println " says dirty " (chunk-provider/summary dp)))
+      (println " says dirty " (providers.chunk-provider/summary dp)))
     (if (seq dirty)
       (do
         (println "\nUpdated some data files. -- rebuilding entire document.")
-        (providers/write-page context providers) ;; wack it all.
+        (providers.manager/write-page context providers) ;; wack it all.
         (swap! version inc)) nil)))
 
 (defn do-forever [context]
@@ -41,7 +41,7 @@
     (.flush System/out)
 
     ;; did input.edn change? => rebuild providers and index.html
-    (if (providers/is-edn-dirty context)
+    (if (providers.manager/is-edn-dirty context)
       (rebuild-all context)
       (check-chunks-for-changes context @last-providers))))
 

@@ -1,6 +1,6 @@
 
-(ns dot-file-provider
-  (:require [chunk-provider :refer [ChunkProviderProtocol]]
+(ns providers.dot-file-provider
+  (:require [providers.chunk-provider :refer [ChunkProviderProtocol]]
             [utils]))
 
 (import net.sourceforge.plantuml.SourceStringReader)

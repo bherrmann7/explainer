@@ -1,5 +1,5 @@
 
-(ns chunk-provider)
+(ns providers.chunk-provider)
 
 ;;
 ;; A provider of html for a web page

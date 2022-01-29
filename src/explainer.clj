@@ -2,35 +2,28 @@
 (ns explainer
   (:gen-class)
   (:require
-   [context]
+   [cli]
    [utils]
-   [providers]
+   [providers.manager]
    [watch]
-   [chunk-provider]))
-
-;; input.edn
-;; [
-;;    chunk-type chunk-data
-;;    chunk-type chunk-data
-;;    ...
-;; ]
+   [providers.chunk-provider]))
 
 (defn -main [& args]
-  (let [ctx (context/create args)
-        {:keys [verbose watch-flag]} ctx]
+  (let [context (cli/create args)
+        {:keys [verbose watch-flag]} context]
 
-;; ensure the output dir exists.
-    (.mkdir (java.io.File. (:output-dir ctx)))
+    ;; ensure the output dir exists.
+    (.mkdir (java.io.File. (:output-dir context)))
 
-    (let [providers (providers/build-providers ctx)]
+    (let [providers (providers.manager/build-providers context)]
       (verbose "Page has" (count providers) "chunks")
       (doseq [provider providers]
-        (verbose "   dirty:" (chunk-provider/is-dirty provider) " chunk:" (chunk-provider/summary provider)))
+        (verbose "   dirty:" (providers.chunk-provider/is-dirty provider) " chunk:" (providers.chunk-provider/summary provider)))
 
       ;; if you run the program, we regenerate all the things.
-      (providers/write-page ctx providers)
+      (providers.manager/write-page context providers)
 
-      (if watch-flag (watch/watcher ctx providers) nil))))
+      (if watch-flag (watch/watcher context providers) nil))))
 
 (comment
   (-main "-v" "-d")
