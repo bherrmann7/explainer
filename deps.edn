@@ -9,6 +9,7 @@
   ring/ring-core {:mvn/version "1.8.2"}
   ring/ring-jetty-adapter {:mvn/version "1.8.2"}
   markdown-clj/markdown-clj {:mvn/version "1.10.8"}
+  selmer/selmer {:mvn/version "1.12.50"}
   }
 
  :aliases

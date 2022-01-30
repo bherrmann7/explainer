@@ -14,6 +14,8 @@
             "Options:\n"
             "  -o <output-dir>, --output-dir <output-dir>  Where to write the output files. [default: docs]\n"
             "  -i <input-dir>, --input-dir <input-dir>     Where to write the input files. [default: input]\n"
+            "  -x <output-filename>, --output-filename <output-filename>      Output filename [default: index.html]\n"
+            "  -z <input-filename>, --input-filename <input-filename>        Input filename [default: index.edn]\n"
             "  -w --watch    Wait and watch for input file changes, and reflect them to the output file.\n"
             "  -r --repl     Use this when running from repl.  Invokes watcher as background thread.\n"
             "  -v --verbose  Verbose output.\n"
@@ -38,10 +40,9 @@
                      :watch-flag  (get pargs "--watch")
                      :output-dir (get pargs "--output-dir")
                      :input-dir  (get pargs "--input-dir")
-
                      :repl (get pargs "--repl")
-                     :input-filename "doc.edn"
-                     :output-filename "index.html"}
+                     :input-filename (get pargs "--input-filename")
+                     :output-filename (get pargs "--output-filename")}
         {:keys [output-dir input-dir input-filename output-filename]} context-raw
         context (assoc context-raw
                        :input-edn-file  (str input-dir "/" input-filename)

@@ -6,6 +6,7 @@
    [utils]
    [providers.chunk-provider]
    [providers.html-provider]
+   [providers.html-file-provider]
    [providers.hiccup-provider]
    [providers.plantuml-file-provider]
    [providers.dot-file-provider]
@@ -24,6 +25,7 @@
   [context [chunk-type chunk-data]]
   (case chunk-type
     :html (providers.html-provider/->Provider chunk-data)
+    :html-file (providers.html-file-provider/->Provider context chunk-data)
     :html-hiccup (providers.hiccup-provider/->Provider chunk-data)
     :plantuml-file (providers.plantuml-file-provider/->Provider context chunk-data)
     :dot-file (providers.dot-file-provider/->Provider context chunk-data)
