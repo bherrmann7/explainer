@@ -1,0 +1,14 @@
+
+
+[
+
+ :html-file { :filename "navigation.html" :example-active "active" }
+ 
+ :html "<h1>Example</h1>"
+
+ :html "This is an example page showing how you would, as a backend
+ engineer, communicate the API and some of the intenal actions for
+ communicating with fellow engineers, product management and qa."
+
+ :html "</div></html>"
+ ]

@@ -53,20 +53,16 @@
 
 (defn build-providers
   "load inital edn file, and break into collection of providers.  Handle special watch provider also."
-  [{:keys [input-dir input-filename watch-flag], :as context}]
-  (let [input-edn-file (str input-dir "/" input-filename)
-        _ (if (not (.exists (java.io.File. input-edn-file))) (utils/die "Input file does not exist: " input-edn-file) nil)
-        edn-file-providers (map #(get-chunk-providers context %) (load-chunks input-edn-file))
+  [{:keys [watch-flag], :as context} input-filename]
+  (let [edn-file-providers (map #(get-chunk-providers context %) (load-chunks input-filename))
         providers (if watch-flag (prepend-watch-reload-provider edn-file-providers) edn-file-providers)]
     providers))
 
 (defn write-page
   "Loop through the providers and output the page by extracting each provider's content"
-  [context providers]
-  (let [{:keys [output-web-page verbose]} context
-        web-page-content (str/join "\n\n" (map providers.chunk-provider/as-html providers))]
-    (spit output-web-page web-page-content)
-    (verbose "Wrote " output-web-page)))
+  [_ page-output-filename providers]
+  (let [web-page-content (str/join "\n\n" (map providers.chunk-provider/as-html providers))]
+    (spit page-output-filename web-page-content)))
 
 (defn is-edn-dirty [context]
   (let [{:keys [input-edn-file  output-web-page]} context]

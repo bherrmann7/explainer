@@ -15,10 +15,10 @@
           <a class='nav-link active' aria-current='page' href='index.html'>Home</a>
         </li>
         <li class='nav-item'>
-          <a class='nav-link ' href='quick-start.html'>Quick Start</a>
+          <a class='nav-link ' href='example.html'>Quick Start</a>
         </li>
         <li class='nav-item'>
-          <a class='nav-link ' href='chunk-types.html'>Chunk Types</a>
+          <a class='nav-link ' href='kitchen-sink.html'>Chunk Types</a>
         </li>
         <li class='nav-item'>
           <a class='nav-link ' href='roadmap.html'>Roadmap</a>
@@ -34,7 +34,6 @@
   </div>
 </nav>
 
-<div style='padding: 30px'>
 
 
 
@@ -54,6 +53,8 @@
   border-radius: 10px;
 }</style>
 
+<div style='padding: 30px'>
+
 <div><h1>Explainer - a simple program for explaining things</h1><br /><h3>Rational: Why was this tool created?</h3><p>Does the world really need another static site generator?  Probably not, but here we go...</p><p>As a BE engineer, I wanted to document/discuss the flow
                of information in the system, showing multiple plantuml
                diagrams and swagger endpoints in a single easy to
@@ -66,7 +67,7 @@
               for generating html pages, <a href="https://asciidoctor.org/">asciidoctor</a>
               looked cool, but also complicated.  Also consider <a href="https://github.com/nextjournal/clerk">Clerk</a></p></div>
 
-<h3>Assumptions / Constraints</h3><ul><li>you dont mind editing edn using your own editor</li><li>you will likey work with an 'editor window' paired to a 'browser window'</li><li>your audience can read the page in a browser</li><li>the edn file always has [chunk-type chunk-data] so an even number of elements.</li><li>the chunk types do not nest inside eachother, there is only 1 level of depth</li><li>you will probably be missing something and want to create your own chunk type</li></ul>
+<h3>Assumptions / Contraints</h3><ul><li>you dont mind editing edn using your own editor</li><li>you will likey work with an 'editor window' paired to a 'browser window'</li><li>your audience can read the page in a browser</li><li>the edn file always has [chunk-type chunk-data] so an even number of elements.</li><li>the chunk types do not nest inside eachother, there is only 1 level of depth</li><li>you will probably be missing something and want to create your own chunk type</li></ul>
 
 <div><br /><h3>How does it work?</h3><p>Explainer reads edn files and transforms them into html files.  Each edn file is a list of content of various types called chunks.</p><p>You create an input file (ie index.edn) <a href="https://learnxinyminutes.com/docs/edn/">EDN
                data format</a>, then execute the 'explainer' program.
@@ -164,4 +165,4 @@ Options:
 
 "All models are wrong, but some are useful." --George Box
 
-</div></html>
+</html>

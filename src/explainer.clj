@@ -4,27 +4,28 @@
   (:require
    [cli]
    [utils]
-   [providers.manager]
-   [watch]
-   [providers.chunk-provider]))
+   [pages]
+   [watch]))
 
 (defn -main [& args]
-  (let [context (cli/create args)
-        {:keys [verbose watch-flag]} context]
 
-    ;; ensure the output dir exists.
-    (.mkdir (java.io.File. (:output-dir context)))
+  ;;    comand line argument influnces running context
+  (let [context (cli/create-context args)
+        {:keys [verbose watch-flag]} context
 
-    (let [providers (providers.manager/build-providers context)]
-      (verbose "Page has" (count providers) "chunks")
-      (doseq [provider providers]
-        (verbose "   dirty:" (providers.chunk-provider/is-dirty provider) " chunk:" (providers.chunk-provider/summary provider)))
+        ;; ensure the output dir exists.
+        _ (.mkdir (java.io.File. (:output-dir context)))
 
-      ;; if you run the program, we regenerate all the things.
-      (providers.manager/write-page context providers)
+        ;; file the edn files, and create chunk provider lists for each 
+        page-to-providers (pages/scan-and-load-pages context)]
 
-      (if watch-flag (watch/watcher context providers) nil))))
+      ;; save all the pages to disk
+    (pages/write-pages context page-to-providers)
+
+      ;; if watch mode, then start up web server and watch files for changes and rebuild on demand.
+    #_(if watch-flag (watch/watcher context page-to-providers) nil)))
 
 (comment
+  (-main)
   (-main "-v" "-d")
   (-main "-v" "-d" "-w" "-r"))

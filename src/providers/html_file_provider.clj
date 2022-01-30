@@ -2,8 +2,7 @@
 (ns providers.html-file-provider
   (:require [providers.chunk-provider :refer [ChunkProviderProtocol]]
             [selmer.parser]
-            [utils]
-            ))
+            [utils]))
 
 (defn compute-input-filename [context data-map]
   (let [{:keys [input-dir]} context]
@@ -15,7 +14,7 @@
 (defn is-dirty
   "If the dot source file has changed, rebuild the output file"
   [context data-map]
-    (utils/is-newer (compute-input-filename context data-map) (:output-web-page context)))
+  (utils/is-newer (compute-input-filename context data-map) (:output-web-page context)))
 
 (deftype Provider [context data-map]
   ChunkProviderProtocol

@@ -27,7 +27,7 @@
 (defn parse-cli [args]
   (into {} (.parse (.withVersion (Docopt. usage) "alpha") (into [] args))))
 
-(defn create
+(defn create-context
   "Takes in the command lines and defaults and builds the progams running 'context' or configuration values."
   [args]
   (let [pargs (parse-cli args)
