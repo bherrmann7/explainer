@@ -13,13 +13,16 @@
 
 (defn is-dirty
   "If the dot source file has changed, rebuild the output file"
-  [context data-map]
-  (utils/is-newer (compute-input-filename context data-map) (:output-web-page context)))
+  [context data-map output-filename]
+  (let
+   [{:keys [input-dir]} context
+    input-filename (str input-dir "/" (:filename data-map))]
+    (utils/is-newer input-filename output-filename)))
 
-(deftype Provider [context data-map]
+(deftype Provider [context data-map output-filename]
   ChunkProviderProtocol
   (as-html [_]  (create-html context data-map))
-  (is-dirty [_] (is-dirty context data-map))
+  (is-dirty [_] (is-dirty context data-map output-filename))
   (summary [_]  (str "html " (count (create-html context data-map)) " bytes")))
 
 

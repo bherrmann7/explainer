@@ -22,18 +22,18 @@
 
 (defn get-chunk-providers
   "given a type and data, return the appropriate provider.  A bit like a factory."
-  [context [chunk-type chunk-data]]
+  [context [chunk-type chunk-data] output-filename]
   (case chunk-type
     :html (providers.html-provider/->Provider chunk-data)
-    :html-file (providers.html-file-provider/->Provider context chunk-data)
+    :html-file (providers.html-file-provider/->Provider context chunk-data output-filename)
     :html-hiccup (providers.hiccup-provider/->Provider chunk-data)
     :plantuml-file (providers.plantuml-file-provider/->Provider context chunk-data)
     :dot-file (providers.dot-file-provider/->Provider context chunk-data)
     :js-file (providers.js-file-provider/->Provider context chunk-data)
-    :swagger-file (providers.swagger-provider/->Provider context chunk-data)
+    :swagger-file (providers.swagger-provider/->Provider context chunk-data output-filename)
     :resource (providers.resource-provider/->Provider context chunk-data)
     :markdown   (providers.markdown-provider/->Provider chunk-data)
-    :markdown-file (providers.markdown-file-provider/->Provider context chunk-data)
+    :markdown-file (providers.markdown-file-provider/->Provider context chunk-data output-filename)
     (providers.unknown-provider/->Provider chunk-type chunk-data)))
 
 (def input-schema [:+ [:catn [:s keyword?] [:n any?]]])
@@ -53,8 +53,8 @@
 
 (defn build-providers
   "load inital edn file, and break into collection of providers.  Handle special watch provider also."
-  [{:keys [watch-flag], :as context} input-filename]
-  (let [edn-file-providers (map #(get-chunk-providers context %) (load-chunks input-filename))
+  [{:keys [watch-flag], :as context} input-filename output-filename]
+  (let [edn-file-providers (map #(get-chunk-providers context % output-filename) (load-chunks input-filename))
         providers (if watch-flag (prepend-watch-reload-provider edn-file-providers) edn-file-providers)]
     providers))
 
@@ -63,10 +63,6 @@
   [_ page-output-filename providers]
   (let [web-page-content (str/join "\n\n" (map providers.chunk-provider/as-html providers))]
     (spit page-output-filename web-page-content)))
-
-(defn is-edn-dirty [context]
-  (let [{:keys [input-edn-file  output-web-page]} context]
-    (utils/is-newer input-edn-file output-web-page)))
 
 
 

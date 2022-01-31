@@ -12,9 +12,13 @@
 
 ;; (collect-page-files {:input-dir "input"}) => ("kitchen-sink.edn" "index.edn" "roadmap.edn")
 
+(defn compute-output-filename [output-dir page-input-filename]
+  (str output-dir "/" (clojure.string/replace page-input-filename #"\.edn$" ".html")))
+
 (defn build-providers [{:keys [output-dir input-dir verbose], :as  context} page-filename]
   (let [page-input-filename (str input-dir "/" page-filename)
-        providers (providers.manager/build-providers context page-input-filename)]
+        page-output-filename (compute-output-filename output-dir page-filename)
+        providers (providers.manager/build-providers context page-input-filename page-output-filename)]
     (verbose "Page " page-filename "has" (count providers) "chunks")
     (doseq [provider providers]
       (verbose "   dirty:" (providers.chunk-provider/is-dirty provider) " chunk:" (providers.chunk-provider/summary provider)))
@@ -24,8 +28,9 @@
   (let [page-files (collect-page-files context)]
     (reduce #(assoc %1 %2 (build-providers context %2)) {} page-files)))
 
+
 (defn write-page [{:keys [output-dir verbose], :as  context} page-input-filename providers]
-  (let [page-output-filename (str output-dir "/" (clojure.string/replace page-input-filename #"\.edn$" ".html"))]
+  (let [page-output-filename (compute-output-filename output-dir page-input-filename)]
     (verbose "writing" page-input-filename "->" page-output-filename)
     (providers.manager/write-page context page-output-filename providers)))
 

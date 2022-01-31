@@ -2,6 +2,7 @@
 (ns providers.swagger-provider
   (:require [providers.chunk-provider :refer [ChunkProviderProtocol]]
             [clojure.java.io :as io]
+            [clojure.string]
             [utils]))
 
 (defn update-file [{:keys [input-dir output-dir]} file]
@@ -16,15 +17,11 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.2/swagger-ui-standalone-preset.js' integrity='sha512-Gk8awVM/iz6LZyVlo/5stCZnZvawpFWhrOHDYy5pLkQoCYrVw26PO9WBuVCObRdcUSlddvYmzHv/lHrrgn1N4Q==' crossorigin='anonymous' referrerpolicy='no-referrer'></script>")
 
 (defn is-dirty
-  "esnure file files are in the ouput dir and up to date"
-  [context  filename]
-  (let [yml-file filename
-        updated-files (filter #(is-newer context %) [yml-file])]
-    (if (empty? updated-files)
-      false
-      (do
-        (doall (map #(update-file context %) updated-files))
-        true))))
+  "If the source file is newer thatn the output, then return true"
+  [{:keys [input-dir]} filename output-filename]
+  (let [
+    input-filename (str input-dir "/" filename)]
+    (utils/is-newer input-filename output-filename)))
 
 (defn create-swagger-html [file-name]
   (let [dom-id-name (str (clojure.string/replace file-name "." "") "-swagger-ui")]
@@ -60,9 +57,9 @@
   <div id='" dom-id-name "'></div>
 ")))
 
-(deftype Provider [context data]
+(deftype Provider [context yml-file output-filename]
   ChunkProviderProtocol
-  (as-html [_] (create-swagger-html data))
-  (is-dirty [_] (is-dirty context data))
-  (summary [_] (str "swagger file: " data)))
+  (as-html [_] (create-swagger-html yml-file))
+  (is-dirty [_] (is-dirty context yml-file output-filename))
+  (summary [_] (str "swagger file: " yml-file)))
 

@@ -11,7 +11,7 @@
 
   ;;    comand line argument influnces running context
   (let [context (cli/create-context args)
-        {:keys [verbose watch-flag]} context
+        {:keys [watch-flag]} context
 
         ;; ensure the output dir exists.
         _ (.mkdir (java.io.File. (:output-dir context)))
@@ -23,7 +23,7 @@
     (pages/write-pages context page-to-providers)
 
       ;; if watch mode, then start up web server and watch files for changes and rebuild on demand.
-    #_(if watch-flag (watch/watcher context page-to-providers) nil)))
+    (if watch-flag (watch/watcher context page-to-providers) nil)))
 
 (comment
   (-main)
