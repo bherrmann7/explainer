@@ -60,6 +60,7 @@
 
   (web-server/start (:output-dir context) version)
 
+  ;; Yikes this is not cross platform.
   (future (sh "xdg-open" "http://localhost:3000/index.html"))
 
   (do-forever context page-to-providers))

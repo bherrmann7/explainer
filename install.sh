@@ -9,7 +9,7 @@ clj -T:build jar
 mv target/explainer-standalone.jar ~/bin/
 
 # create shell script for running the jar.
-echo 'java -jar $HOME/bin/explainer-standalone.jar $*' > ~/bin/explainer
+echo 'java -Dorg.eclipse.jetty.util.log.announce=false -jar $HOME/bin/explainer-standalone.jar $*' > ~/bin/explainer
 
 chmod a+x ~/bin/explainer
 
