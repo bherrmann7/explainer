@@ -92,14 +92,7 @@
 
 
 
-<div><br /><h3>Chunk Types</h3><h4>:html</h4>A raw html section.  The gold standard for displaying content in a browser.<br /><span class="ex">:html "&lt;b>cat&lt;/b>"</span><h4>:html-hiccup</h4>Hiccup is a representation of html in clojure's edn format<br /><span class="ex">:html-hiccup [:h1 "cat" ]</span><h4>:js-file</h4>Inserts a js file at the current location in the document<br /><span class="ex">:js-file "myjs.fo"</span><h4>:plantuml-file</h4>Describes the chunk as a plantuml diagram.  The argument of the chunk type is the file.  The file contains a plantuml text input for a diagram.  explainer uses the plantuml library to generate the image and inserts the html to render the image on the page<br /><span class="ex">:plantuml-file "alice-bob.pu"</span><h4>:dot-file</h4>A dot file is a variation on the plantuml-file.  The input is a graphvis file. See <a href="https://renenyffenegger.ch/notes/tools/Graphviz/examples/index">Graphvis (dot) examples</a> and <a href="https://graphviz.org/">https://graphviz.org/</a><br /><span class="ex">:dot-file "figure.dot"</span><h4>:resource</h4>Resource file needed for a page.  Typically a png or
-jpg file which is referenced in the :html or :html-provider.  This is
-needed to tell explainer to copy the resource from the input directory
-to the output directory<br /><span class="ex">:resource "cat.jgp"</span><h4>:swagger-file</h4>Provide a swagger yaml-file and it inserts the API<br /><span class="ex">:swagger-file  "my-swagger-file.yml"</span><h4>:markdown</h4>Provide markdown in the document. You can experiment with markdown at <a href="https://rawgit.com/yogthos/markdown-clj/master/demo/markdown.html">Yogthos markdown site</a><br /><span class="ex">:markdown-file  "# Boo
-Halloween involves candy.</span><h4>:markdown-file</h4>Provide a markdown file and insert it's contents as html<br /><span class="ex">:markdown-file  "my-markdown-file.md"</span><br /><br /><h3>Install as local command</h3><div>The install script (install.sh) puts two files in $HOME/bin.  <ol><li>A shell executable named 'explainer'<li>A uberjar used by the script.</ol></div><br /><h3>Quick Example</h3><pre>$ ./install.sh # installs to $HOME/bin/explainer 
-$ mkdir -p ~/cow/input && cd ~/cow 
-$ echo ' [ :html "&lt;h1>Goose&lt;/h1>" ] ' > input/doc.edn 
-$ explainer && google-chrome docs/index.html  </pre><br /><h3>Watch Mode</h3><p>When developing a document, using watch mode can
+<div><h3>Watch Mode</h3><p>When developing a document, using watch mode can
                be helpful.  Watch mode is used by having a browser
                window along side of an editor window with explainer
                running in watch mode.  Everytime you save in the
