@@ -4,7 +4,48 @@
 
  :html-file { :filename "navigation.html" :quick-start-active "active" }
  
- :html "<h1>Quick Start</h1><h3>Coming soon...</h3>"
+ :html-hiccup [:div
+
+               [:h3 "Quick Example"]
+               [:br]
+               [:pre
+                "$ # Download the install.sh for explainer\n\n"
+
+                "$ # run the installer  -  installs to $HOME/bin/explainer \n"
+                "$ ./install.sh \n\n"
+
+                "$ # create a working directory"
+                "$ mkdir -p ~/cow/input && cd ~/cow \n\n"
+
+                "$ # create some content\n" 
+                "$ echo ' [ :html \"&lt;h1>Goose&lt;/h1>\" ] ' > input/doc.edn \n\n"
+
+                "$ # view it\n"
+                "$ explainer && google-chrome docs/index.html"
+                           ]
+
+
+               [:br]
+                [:h4 "Another Simple Example" ]
+
+               [ :p "Place this file in input/index.edn"]
+               
+               [:span.ex-block 
+                [:pre
+                 "[ 
+      ;; chunk type   chunk-data
+      :html          \"&lt;h1&gt;Hi Ho&lt;/h1&gt;Boffin for Something\"  
+]"]]
+               [:br]
+
+               [ :p "The run 'explainer' then browse to 'http://localhost:3000'" ]
+
+
+
+                [:br]
+
+               ]
 
  :html "</div></html>"
+
  ]

@@ -1,7 +1,23 @@
 <!doctype html>
 <html lang='en'>
  
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+<style>
+.ex {
+  background-color: #cdeefd;
+  margin: 10px;
+  padding: 10px;
+  display: inline-block;
+  border-radius: 10px;
+}
+.ex-block {
+  background-color: #cdeefd;
+  margin: 15px;
+  padding: 20px;
+  display: inline-block;
+  border-radius: 10px;
+}</style>
 
 <nav class='navbar navbar-expand-lg' style='background-color: #cdeefd;'>
   <div class='container-fluid'>
@@ -38,6 +54,20 @@
 
 
 
-<h1>Quick Start</h1><h3>Coming soon...</h3>
+<div><h3>Quick Example</h3><br /><pre>$ # Download the install.sh for explainer
+
+$ # run the installer  -  installs to $HOME/bin/explainer 
+$ ./install.sh 
+
+$ # create a working directory$ mkdir -p ~/cow/input && cd ~/cow 
+
+$ # create some content
+$ echo ' [ :html "&lt;h1>Goose&lt;/h1>" ] ' > input/doc.edn 
+
+$ # view it
+$ explainer && google-chrome docs/index.html</pre><br /><h4>Another Simple Example</h4><p>Place this file in input/index.edn</p><span class="ex-block"><pre>[ 
+      ;; chunk type   chunk-data
+      :html          "&lt;h1&gt;Hi Ho&lt;/h1&gt;Boffin for Something"  
+]</pre></span><br /><p>The run 'explainer' then browse to 'http://localhost:3000'</p><br /></div>
 
 </div></html>

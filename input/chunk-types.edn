@@ -4,10 +4,61 @@
 
  :html-file { :filename "navigation.html" :roadmap-active "active" }
  
- :html "<h1>Chunk Types</h1>
-Document and show an example an example of every chunk-type.
+ :html-hiccup [:div [:br] [:h2 "Chunk Types" ]
 
-<h2>Coming soon...</h2>"
 
+               [:h4 ":html" ]
+               "A raw html section.  The gold standard for displaying content in a browser."
+               [:br]
+               [:span.ex ":html \"&lt;b>cat&lt;/b>\""]
+
+ 
+               [:h4 ":html-hiccup" ]
+               "Hiccup is a representation of html in clojure's edn format"
+               [:br]
+               [:span.ex ":html-hiccup [:h1 \"cat\" ]" ]
+
+               [:h4 ":js-file" ]
+               "Inserts a js file at the current location in the document"
+               [:br]
+               [:span.ex ":js-file \"myjs.fo\""]
+
+               [:h4  ":plantuml-file" ]
+               "Describes the chunk as a plantuml diagram.  The argument of the chunk type is the file.  The file contains a plantuml text input for a diagram.  explainer uses the plantuml library to generate the image and inserts the html to render the image on the page"
+               [:br]
+               [:span.ex ":plantuml-file \"alice-bob.pu\"" ]
+
+               [:h4 ":dot-file"]
+               "A dot file is a variation on the plantuml-file.  The input is a graphvis file. See " 
+               [:a {:href "https://renenyffenegger.ch/notes/tools/Graphviz/examples/index"} "Graphvis (dot) examples"] " and " [:a { :href "https://graphviz.org/" } "https://graphviz.org/" ]
+               [:br]
+               [:span.ex ":dot-file \"figure.dot\"" ]
+
+               [:h4 ":resource" ]
+               "Resource file needed for a page.  Typically a png or
+jpg file which is referenced in the :html or :html-provider.  This is
+needed to tell explainer to copy the resource from the input directory
+to the output directory"
+               [:br]
+               [:span.ex ":resource \"cat.jgp\""] 
+
+               [:h4 ":swagger-file" ]
+               "Provide a swagger yaml-file and it inserts the API"
+               [:br]
+               [:span.ex ":swagger-file  \"my-swagger-file.yml\"" ]
+
+               
+               [:h4 ":markdown" ]
+               "Provide markdown in the document. You can experiment with markdown at " [:a { :href "https://rawgit.com/yogthos/markdown-clj/master/demo/markdown.html"} "Yogthos markdown site" ]
+               [:br]
+               [:span.ex ":markdown-file  \"# Boo\nHalloween involves candy." ]
+
+
+               [:h4 ":markdown-file" ]
+               "Provide a markdown file and insert it's contents as html"
+               [:br]
+               [:span.ex ":markdown-file  \"my-markdown-file.md\"" ]
+
+]
   :html "</div></html>"
  ]

@@ -41,12 +41,16 @@
 (defn load-chunks
   "load edn data into memory"
   [input-filename]
+  (try 
   (let [input-as-edn (read-string (slurp input-filename))
         _ (if (m/validate input-schema input-as-edn)
             nil
             (utils/die "input file, " input-filename ", must contain pairs of chunk-type (edn keyword) and chunk-data."))
         chunks (partition 2 input-as-edn)]
-    chunks))
+    chunks)
+  (catch Throwable _
+    [[:html (str "Unable to load edn file: " input-filename)]])))
+
 
 (defn prepend-watch-reload-provider [edn-file-providers]
   (conj edn-file-providers (providers.watch-reloader-provider/->Provider)))

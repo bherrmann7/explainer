@@ -6,7 +6,9 @@
  
  :html "<h1>Example</h1>"
 
- :html "This is an example page showing how you would, as a backend
+ :html "<p>A real world example"
+
+ :html "<p>This is an example page showing how you would, as a backend
  engineer, communicate the API and some of the intenal actions for
  communicating with fellow engineers, product management and qa."
 

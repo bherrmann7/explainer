@@ -2,22 +2,6 @@
 [
  :html-file { :filename "navigation.html" :home-active "active" }
 
- :html "<style>
-.ex {
-  background-color: #cdeefd;
-  margin: 10px;
-  padding: 10px;
-  display: inline-block;
-  border-radius: 10px;
-}
-.ex-block {
-  background-color: #cdeefd;
-  margin: 15px;
-  padding: 20px;
-  display: inline-block;
-  border-radius: 10px;
-}</style>"
-
 
  :html-hiccup [:div
                [:h1 "Explainer - a simple program for explaining things"]

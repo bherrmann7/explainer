@@ -28,4 +28,5 @@
 (comment
   (-main)
   (-main "-v" "-d")
-  (-main "-v" "-d" "-w" "-r"))
+  (-main "-v" "-d" "-w" "-r")
+  )
