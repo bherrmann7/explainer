@@ -1,0 +1,40 @@
+
+
+
+
+[ :html-file {:filename "navigation.html" :cli-active "active"}
+
+ :html-hiccup [:div
+
+               [:br]
+               [:br]
+               [:h3 "Command Line Usage"]
+               [:p "Running explainer with -h shows the command line options" ]
+               [:pre "
+                
+$ explainer -h
+Explainer
+
+Usage:
+  explainer [options] 
+  explainer --help
+  explainer --version
+
+Options:
+  -o <output-dir>, --output-dir <output-dir>  Where to write the output files. [default: docs]
+  -i <input-dir>, --input-dir <input-dir>     Where to write the input files. [default: input]
+  -w --watch    Wait and watch for input file changes, and reflect them to the output file.
+  -r --repl     Use this when running from repl.  Invokes watcher as background thread.
+  -v --verbose  Verbose output.
+  -d --debug    Debug output.
+  -h --help     Show this screen.
+  --version     Show version.
+"
+
+                ]
+               ]
+               
+ :html "</div></html>"
+ 
+]
+

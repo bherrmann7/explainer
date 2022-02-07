@@ -37,6 +37,12 @@
           <a class='nav-link ' href='chunk-types.html'>Chunk Types</a>
         </li>
         <li class='nav-item'>
+          <a class='nav-link ' href='watch.html'>Watch</a>
+        </li>
+        <li class='nav-item'>
+          <a class='nav-link {cli-active}}' href='cli.html'>CLI</a>
+        </li>
+        <li class='nav-item'>
           <a class='nav-link ' href='roadmap.html'>Roadmap</a>
         </li>
         <li class='nav-item'>
@@ -89,69 +95,6 @@
 <img src=diagram.png />
 
 <br></div>
-
-
-
-<div><h3>Watch Mode</h3><p>When developing a document, using watch mode can
-               be helpful.  Watch mode is used by having a browser
-               window along side of an editor window with explainer
-               running in watch mode.  Everytime you save in the
-               editor, explainer updates the document. </p><pre>$ explainer -w</pre><img src="typicalworkflow.png" width="600" /><br /><br /><p>When running in watch mode, explainer checks for
-               changes three times a second.  When a timestamp on an
-               input file changes, explainer regenerates the output. </p><p>The output page has a small bit of injected
-               javascript which checks to see if the document version
-               has changed.  If the version has changed, the page is
-               reloaded.  The endpoint for checking the version is;</p></div>
-
-
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.2/swagger-ui.css' integrity='sha512-sFCybMLlCEgtHSq/iUUG/HL4PKfg5l/qlA2scyRpDWTZU8hWOomj/CrOTxpi9+w8rODDy+crxi2VxhLZ+gehWg==' crossorigin='anonymous' referrerpolicy='no-referrer' />
-<script src='https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.2/swagger-ui-bundle.js' integrity='sha512-qoOARXHXcSln7mnJQDGGnPYheEGFOPjlO+cV3KaHlLnTcJJZCZTqyPv7fMX269MuWe3nwQWEilTuuUGjDB4wSA==' crossorigin='anonymous' referrerpolicy='no-referrer'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.2/swagger-ui-standalone-preset.js' integrity='sha512-Gk8awVM/iz6LZyVlo/5stCZnZvawpFWhrOHDYy5pLkQoCYrVw26PO9WBuVCObRdcUSlddvYmzHv/lHrrgn1N4Q==' crossorigin='anonymous' referrerpolicy='no-referrer'></script><style>
-      /* suppress the yml link */
-      .swagger-ui .info hgroup.main a {
-        display: none
-      }
-    </style>
-   <script>
-     window.addEventListener('load', (event) => {
-      // Begin Swagger UI call region
-      const ui = SwaggerUIBundle({
-          url: 'reloader.yml',
-        dom_id: '#reloaderyml-swagger-ui',
-        deepLinking: true,
-        presets: [
-          SwaggerUIBundle.presets.apis,
-          // using .slice(1) gets rid of banner
-          SwaggerUIStandalonePreset.slice(1) 
-        ],
-        plugins: [
-          SwaggerUIBundle.plugins.DownloadUrl
-        ],
-        layout: 'StandaloneLayout'
-      });
-      // End Swagger UI call region
-    });
-  </script>
-  <div id='reloaderyml-swagger-ui'></div>
-
-
-<div><br /><br /><h3>Command Line Usage</h3><pre>Explainer
-
-Usage:
-  explainer [options] 
-  explainer --help
-  explainer --version
-
-Options:
-  -o <output-dir>, --output-dir <output-dir>  Where to write the output files. [default: docs]
-  -i <input-dir>, --input-dir <input-dir>     Where to write the input files. [default: input]
-  -w --watch    Wait and watch for input file changes, and reflect them to the output file.
-  -v --verbose  Verbose output.
-  -d --debug    Debug output.
-  -h --help     Show this screen.
-  --version     Show version.
-
-</pre></div>
 
 <h1>Enjoy!</h1>
 

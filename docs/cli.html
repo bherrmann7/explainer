@@ -28,25 +28,25 @@
     <div class='collapse navbar-collapse' id='navbarSupportedContent'>
       <ul class='navbar-nav me-auto mb-2 mb-lg-0'>
         <li class='nav-item'>
-          <a class='nav-link {{home-active}}' aria-current='page' href='index.html'>Home</a>
+          <a class='nav-link ' aria-current='page' href='index.html'>Home</a>
         </li>
         <li class='nav-item'>
-          <a class='nav-link {{quick-start-active}}' href='quick-start.html'>Quick Start</a>
+          <a class='nav-link ' href='quick-start.html'>Quick Start</a>
         </li>
         <li class='nav-item'>
-          <a class='nav-link {{chunk-types-active}}' href='chunk-types.html'>Chunk Types</a>
+          <a class='nav-link ' href='chunk-types.html'>Chunk Types</a>
         </li>
         <li class='nav-item'>
-          <a class='nav-link {{watch-active}}' href='watch.html'>Watch</a>
+          <a class='nav-link ' href='watch.html'>Watch</a>
         </li>
         <li class='nav-item'>
           <a class='nav-link {cli-active}}' href='cli.html'>CLI</a>
         </li>
         <li class='nav-item'>
-          <a class='nav-link {{roadmap-active}}' href='roadmap.html'>Roadmap</a>
+          <a class='nav-link ' href='roadmap.html'>Roadmap</a>
         </li>
         <li class='nav-item'>
-          <a class='nav-link {{example-active}}' href='example.html'>Example</a>
+          <a class='nav-link ' href='example.html'>Example</a>
         </li>
         <li class='nav-item'>
           <a class='nav-link' href='https://github.com/bherrmann7/explainer'>Github Site</a>
@@ -58,3 +58,27 @@
 
 <div style='padding: 30px'>
 
+
+
+<div><br /><br /><h3>Command Line Usage</h3><p>Running explainer with -h shows the command line options</p><pre>
+                
+$ explainer -h
+Explainer
+
+Usage:
+  explainer [options] 
+  explainer --help
+  explainer --version
+
+Options:
+  -o <output-dir>, --output-dir <output-dir>  Where to write the output files. [default: docs]
+  -i <input-dir>, --input-dir <input-dir>     Where to write the input files. [default: input]
+  -w --watch    Wait and watch for input file changes, and reflect them to the output file.
+  -r --repl     Use this when running from repl.  Invokes watcher as background thread.
+  -v --verbose  Verbose output.
+  -d --debug    Debug output.
+  -h --help     Show this screen.
+  --version     Show version.
+</pre></div>
+
+</div></html>

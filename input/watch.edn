@@ -1,0 +1,35 @@
+
+
+
+
+[:html-file {:filename "navigation.html" :watch-active "active"}
+
+ :resource "typicalworkflow.png"
+
+ :html-hiccup    [:div
+
+                 [:h2 "Watch"]
+                  [:p "When developing a document, using watch mode can
+               be helpful.  Watch mode is used by having a browser
+               window along side of an editor window with explainer
+               running in watch mode.  Everytime you save in the
+               editor, explainer updates the document. "]
+                  [:pre "$ explainer -w"]
+                  [:img {:src "typicalworkflow.png" :width 600}]
+
+                  [:br]
+                  [:br]
+
+                 [:h2 "How Watch Works"]
+                  [:p "When running in watch mode, explainer checks for
+               changes three times a second.  When a timestamp on an
+               input file changes, explainer regenerates the output. "]
+
+                  [:p "The output page has a small bit of injected
+               javascript which checks to see if the document version
+               has changed.  If the version has changed, the page is
+               reloaded.  The endpoint for checking the version is;"]]
+
+ :swagger-file "reloader.yml"
+
+ :html "</div></html>"]

@@ -85,57 +85,6 @@
  :plantuml-file  "diagram.pu"
  :html "<br></div>"
 
- :resource "typicalworkflow.png"
- 
- :html-hiccup    [:div
-
-               [:h3 "Watch Mode"]
-               [:p "When developing a document, using watch mode can
-               be helpful.  Watch mode is used by having a browser
-               window along side of an editor window with explainer
-               running in watch mode.  Everytime you save in the
-               editor, explainer updates the document. " ]
-               [:pre "$ explainer -w"]
-               [:img {:src "typicalworkflow.png" :width 600}]
-
-               [:br]
-               [:br]
-
-               [:p "When running in watch mode, explainer checks for
-               changes three times a second.  When a timestamp on an
-               input file changes, explainer regenerates the output. "]
-
-               [:p "The output page has a small bit of injected
-               javascript which checks to see if the document version
-               has changed.  If the version has changed, the page is
-               reloaded.  The endpoint for checking the version is;"]
-               ]
-
- :swagger-file "reloader.yml"
-
- :html-hiccup [:div
-
-               [:br]
-               [:br]
-               [:h3 "Command Line Usage"]
-               [:pre "Explainer\n"
-                "\n"
-                "Usage:\n"
-                "  explainer [options] \n"
-                "  explainer --help\n"
-                "  explainer --version\n"
-                "\n"
-                "Options:\n"
-                "  -o <output-dir>, --output-dir <output-dir>  Where to write the output files. [default: docs]\n"
-                "  -i <input-dir>, --input-dir <input-dir>     Where to write the input files. [default: input]\n"
-                "  -w --watch    Wait and watch for input file changes, and reflect them to the output file.\n"
-                "  -v --verbose  Verbose output.\n"
-                "  -d --debug    Debug output.\n"
-                "  -h --help     Show this screen.\n"
-                "  --version     Show version.\n"
-                "\n"]
-               ]
-
  :markdown "#Enjoy!"
 
  :html "\"All models are wrong, but some are useful.\" --George Box"
