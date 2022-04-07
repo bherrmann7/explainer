@@ -28,7 +28,6 @@
   (let [page-files (collect-page-files context)]
     (reduce #(assoc %1 %2 (build-providers context %2)) {} page-files)))
 
-
 (defn write-page [{:keys [output-dir verbose], :as  context} page-input-filename providers]
   (let [page-output-filename (compute-output-filename output-dir page-input-filename)]
     (verbose "writing" page-input-filename "->" page-output-filename)

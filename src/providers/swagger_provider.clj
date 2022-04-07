@@ -19,8 +19,7 @@
 (defn is-dirty
   "If the source file is newer thatn the output, then return true"
   [{:keys [input-dir]} filename output-filename]
-  (let [
-    input-filename (str input-dir "/" filename)]
+  (let [input-filename (str input-dir "/" filename)]
     (utils/is-newer input-filename output-filename)))
 
 (defn create-swagger-html [file-name]

@@ -33,8 +33,7 @@
         debug (fn [& args] (if (get pargs "--debug") (apply println (conj args "debug ")) nil))
         _ (verbose "raw args:" args)
         _ (verbose "parsed args:" pargs)]
-    {
-     :verbose verbose
+    {:verbose verbose
      :debug debug
      :watch-flag  (get pargs "--watch")
      :output-dir (get pargs "--output-dir")

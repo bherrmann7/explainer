@@ -17,6 +17,7 @@
       ".js" "text/javascript"
       ".yml" "text/x-yaml"
       ".html" "text/html"
+      ".json" "application/json"
       "image/jpeg")))
 
 (defn handler [serve-from-dir version request]
