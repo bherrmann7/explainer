@@ -60,7 +60,8 @@
 
   (web-server/start (:output-dir context) version)
 
-  (clojure.java.browse/browse-url "http://localhost:3000/index.html")
+  (future
+    (clojure.java.browse/browse-url "http://localhost:3000/index.html"))
 
   (do-forever context page-to-providers))
 

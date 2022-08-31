@@ -12,7 +12,7 @@
   (selmer.parser/render (slurp (compute-input-filename context data-map)) data-map))
 
 (defn is-dirty
-  "If the dot source file has changed, rebuild the output file"
+  "If the html-file source file has changed, rebuild the output file"
   [context data-map output-filename]
   (let
    [{:keys [input-dir]} context
@@ -24,6 +24,4 @@
   (as-html [_]  (create-html context data-map))
   (is-dirty [_] (is-dirty context data-map output-filename))
   (summary [_]  (str "html " (count (create-html context data-map)) " bytes")))
-
-
 

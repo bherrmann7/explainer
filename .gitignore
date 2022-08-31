@@ -7,3 +7,4 @@ target
 pub
 .\#*
 install2.sh
+.idea

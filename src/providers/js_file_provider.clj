@@ -11,7 +11,7 @@
     (str "<script src='" filename "' ></script>")))
 
 (defn is-dirty
-  "If the dot source file has changed, rebuild the output file"
+  "If the js source file has changed, rebuild the output file"
   [context filename]
   (let
    [{:keys [input-dir output-dir debug]} context
