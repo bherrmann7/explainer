@@ -6,5 +6,5 @@ target
 .nrepl-port
 pub
 .\#*
-install2.sh
 .idea
+local-install.sh

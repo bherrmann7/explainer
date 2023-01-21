@@ -20,7 +20,7 @@
             "  -d --debug    Debug output.\n"
             "  -h --help     Show this screen.\n"
             "  --version     Show version.\n"
-            "\n"))
+            "\nAlso see docs at https://bherrmann7.github.io/explainer/\n"))
 
 (defn parse-cli [args]
   (into {} (.parse (.withVersion (Docopt. usage) "alpha") (into [] args))))

@@ -14,7 +14,7 @@
                 "$ # run the installer  -  installs to $HOME/bin/explainer \n"
                 "$ ./install.sh \n\n"
 
-                "$ # create a working directory"
+                "$ # create a working directory\n"
                 "$ mkdir -p ~/cow/input && cd ~/cow \n\n"
 
                 "$ # create some content\n" 
@@ -40,6 +40,7 @@
 
                [ :p "The run 'explainer' then browse to 'http://localhost:3000'" ]
 
+               [ :br ]
 
 
                 [:br]
