@@ -11,7 +11,7 @@
 
                [:p "Does the world really need another static site generator?  Probably not, but here we go..." ]
 
-               [:p "As a BE engineer, I wanted to document/discuss the flow
+               [:p "As a developer, I wanted to document/discuss the flow
                of information in the system, showing multiple plantuml
                diagrams and swagger endpoints in a single easy to
                review/update/discuss document." ]
@@ -24,8 +24,7 @@
               directly - but explainer provides more content
               types (ie. plantuml, dot, markdown.)  Since Explainer is
               fairly simple, a clojure developer can adapt it to
-              unforseen needs."
-]
+              unforseen needs." ]
 
               [:p "There are other more complicated systems out there
               for generating html pages, " [:a
@@ -40,7 +39,7 @@
 - you dont mind editing edn using your own editor
 - you will likey work with an 'editor window' paired to a 'browser window'
 - your audience can read the page in a browser
-- the edn file always has [chunk-type chunk-data] so an even number of elements.
+- the edn file always has [chunk-type chunk-data] so an even number of elements. 
 - the chunk types do not nest inside eachother, there is only 1 level of depth
 - you will probably be missing something and want to create your own chunk type
 "
@@ -66,18 +65,18 @@
                can then develop the diagram in the cloud, and when
                finished copy the text into explainer"]
 
-               [:p "For example, Using this as the 'input/index.edn' file,"]
+               [:p "For example, 1. use this as the 'input/index.edn' file,"]
                [:span.ex-block 
                 [:pre
                  "[ 
       ;; chunk type       chunk-data
-      :html-hiccup        [:div [:h3 \"Authentication Example\" ] [:br] [:br] ] ]
+      :html-hiccup        [:div [:h3 \"Authentication Example\" ] [:br] [:br] ] 
       :plantuml-file      \"diagram.pu\"
 ]"]]
                [:br]
-               "The following output (docs/index.html) is generated;"
-               [:br]
-               [:br]]
+               [:p "2. place the file " [:a {:href "https://raw.githubusercontent.com/bherrmann7/explainer/master/input/diagram.pu"} "diagram.pu" ] " into \"input/diagram.pu\"."  ]
+               [:p "3. run \"explainer\" and it will generate following output (into docs/index.html, docs/diagram.png);" ]
+]
  
  :html "<div class='ex-block'>"
  ;; chunk type   chunk-data

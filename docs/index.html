@@ -60,7 +60,7 @@
 
 
 
-<div><h1>Explainer - a simple program for explaining things</h1><br /><h3>Rational: Why was this tool created?</h3><p>Does the world really need another static site generator?  Probably not, but here we go...</p><p>As a BE engineer, I wanted to document/discuss the flow
+<div><h1>Explainer - a simple program for explaining things</h1><br /><h3>Rational: Why was this tool created?</h3><p>Does the world really need another static site generator?  Probably not, but here we go...</p><p>As a developer, I wanted to document/discuss the flow
                of information in the system, showing multiple plantuml
                diagrams and swagger endpoints in a single easy to
                review/update/discuss document.</p><h3>Why would you use it?</h3><p>To create and share some documenation about how
@@ -82,11 +82,11 @@
                easy way to create a plantuml diagram is to find a good
                diagram on the plantuml site, then click on it.  You
                can then develop the diagram in the cloud, and when
-               finished copy the text into explainer</p><p>For example, Using this as the 'input/index.edn' file,</p><span class="ex-block"><pre>[ 
+               finished copy the text into explainer</p><p>For example, 1. use this as the 'input/index.edn' file,</p><span class="ex-block"><pre>[ 
       ;; chunk type       chunk-data
-      :html-hiccup        [:div [:h3 "Authentication Example" ] [:br] [:br] ] ]
+      :html-hiccup        [:div [:h3 "Authentication Example" ] [:br] [:br] ] 
       :plantuml-file      "diagram.pu"
-]</pre></span><br />The following output (docs/index.html) is generated;<br /><br /></div>
+]</pre></span><br /><p>2. place the file <a href="https://raw.githubusercontent.com/bherrmann7/explainer/master/input/diagram.pu">diagram.pu</a> into "input/diagram.pu".</p><p>3. run "explainer" and it will generate following output (into docs/index.html, docs/diagram.png);</p></div>
 
 <div class='ex-block'>
 

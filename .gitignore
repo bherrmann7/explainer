@@ -8,3 +8,4 @@ pub
 .\#*
 .idea
 local-install.sh
+/explainer.iml
