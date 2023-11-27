@@ -21,7 +21,7 @@
                [:h4 ":html-file" ]
                "Display separate html file, and use the <a href='https://github.com/yogthos/Selmer'>Selmer</a> project templates. (ie html file contains; Hello {{name}}) "
                [:br]
-               [:span.ex ":html-hiccup [:html-file { :filename \"test.html\" :name \"John\" } ]" ]
+               [:span.ex ":html-file { :filename \"test.html\" :name \"John\" }" ]
 
                [:h4 ":js-file" ]
                "Inserts a js file at the current location in the document"
