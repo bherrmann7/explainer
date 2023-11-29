@@ -10,11 +10,11 @@ Transform an input file (doc.edn) file into a web page
 (docs/index.html)
 
 The input can include;
-      html
-      hiccup
-      plantUML diagrams
-      dot files.
-      ...
+      - html
+      - hiccup
+      - plantUML diagrams
+      - dot files.
+      - ...
 
 # Usage and Example:
 
