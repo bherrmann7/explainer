@@ -9,8 +9,12 @@ architecture of a project, to someone else.
 Transform an input file (doc.edn) file into a web page
 (docs/index.html)
 
-The input can include; html, hiccup, plantUML diagrams or dot files.
-When plantUML or dot files are referenced, a png is generated.
+The input can include;
+      html
+      hiccup
+      plantUML diagrams
+      dot files.
+      ...
 
 # Usage and Example:
 
